@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-indigo-600 rounded-xl">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t39.30808-6/245418499_4690283027703564_7627589068188176869_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=ac89l35TbUoAX8lFkDF&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT-ptLKUZemqivagnVIhNd7TYXhz47WxEoZ_IpikcfEYgw&oe=625A8462" alt="">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t39.30808-6/245418499_4690283027703564_7627589068188176869_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=_4lVLC3dex0AX_joyL0&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT-AkteWqdv0Ou_rxZ5rIw-NNcMp0xwVKUjooQvWfnZsoA&oe=626661E2" alt="">
                         
                         <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Sebastian Padilla</h1>
                         
