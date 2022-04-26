@@ -14,7 +14,7 @@
                     <h3 class="text-center">
                         <a class="text-white text-2xl font-bold text-center" href="{{route('prueba')}}">
                             <span class="absolute inset-0"></span>
-                            Top 10 highest paid programming languages of 2021
+                            Top 5 highest paid programming languages of 2021
                         </a>
                     </h3>
                 </div>
