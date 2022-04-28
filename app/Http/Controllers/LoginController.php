@@ -39,10 +39,10 @@ class LoginController extends Controller
             $auth = Auth::attempt($credentials); 
          if($auth){
             $tipo = Auth::user()->tipo;
-            if ($tipo == 'alumno') {
+            if ($tipo == 'Alumno') {
                 return redirect()->route('alumno.dashboard');
             }else{
-                if($tipo == 'profesor'){
+                if($tipo == 'Profesor'){
                     return redirect()->route('profesor.dashboard');    
                 }
                 return redirect()->route('admin.dashboard');

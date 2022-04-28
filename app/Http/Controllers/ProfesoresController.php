@@ -32,7 +32,7 @@ class ProfesoresController extends Controller
         $user->name = $request->input('name');
         $user->apellido = $request->input('apellido');
         $user->celular = $request->input('celular');
-        $user->tipo = 'profesor';
+        $user->tipo = 'Profesor';
         $user->email = $request->input('email');
         $user->password = bcrypt( $request->input('password'));
         $user->save();

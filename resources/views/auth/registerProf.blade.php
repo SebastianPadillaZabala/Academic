@@ -21,7 +21,7 @@
                                 <input id="celular" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="celular" value="" placeholder="Celular" required autofocus>
                             </div>
                             <div class="flex flex-col mt-4">
-                                <input id="fecha_nac" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="fecha_nac" value="" placeholder="Fecha Nacimiento" required autofocus>
+                                <input id="fecha_nac" type="date" class="flex-grow h-8 px-2 border rounded border-grey-400" name="fecha_nac" value="" placeholder="Fecha Nacimiento" required autofocus>
                             </div>
                             <div class="flex flex-col mt-2">
                                 <p class="font-semibold text-gray-400">Curriculum Vitae</p>

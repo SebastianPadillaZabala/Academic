@@ -1,6 +1,7 @@
 @extends('layouts.templateNavAlumno')
-@section('content')
-<div class="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+@section('content')  
+<main class="h-screen w-full">
+<div class="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%] ">
     <div class="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
         <div class="px-6 flex items-center justify-between space-x-4 2xl:container">
             <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">Bienvenido Alumno</h5>
@@ -39,6 +40,22 @@
                 </button>
             </div>
         </div>
-
+        <h6 class="text-3xl text-gray-600 font-medium pt-5 pl-4">Categorias</h6>
+    <div class="px-10 grid gap-3 lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2">
+    @foreach($categorias as $cat)
+    <div class="max-w-sm h-auto mx-auto my-8 rounded overflow-hidden shadow-lg transform transition-all hover:-translate-y-4">
+    <a href="{{route('prueba')}}"> 
+    <img class="object-cover h-48 w-96" src="https://images.pexels.com/photos/4220967/pexels-photo-4220967.jpeg" alt="Volcano">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2 hover:text-red-500 hover:cursor-pointer">{{$cat->name}}</div>
+           <p class="text-gray-700 text-base">
+           Encuentra los mejores cursos de esta categoria.
+          </p>
+       </div>
+       </a> 
     </div>
+    @endforeach
+   </div>
+</div>
+</main>
 @endsection('content')

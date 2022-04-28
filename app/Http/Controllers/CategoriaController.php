@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Alumno;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Models\Categoria;
 
-class AlumnosController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,32 +23,9 @@ class AlumnosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->apellido = $request->input('apellido');
-        $user->celular = $request->input('celular');
-        $user->tipo = 'Alumno';
-        $user->email = $request->input('email');
-        $user->password = bcrypt( $request->input('password'));
-        $user->save();
-
-        $alumno = new Alumno();
-        $alumno->cantidad_cursos = 0;
-        $alumno->suscripcion = 'ninguna';
-        $alumno->id_user = DB::table('users')->max('id');
-        $alumno->save();
-
-        $email = $request->input('email');
-        $pass = $request->input('password');
-        $credentials = array(
-            'email' => $email,
-            'password' => $pass
-            );
-            $auth = Auth::attempt($credentials); 
-
-        return redirect()->route('admin.dashboard');
+        //
     }
 
     /**
@@ -107,5 +82,19 @@ class AlumnosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function categorias(){
+        $categorias = Categoria::all();
+        if(auth()->user()->tipo == 'Alumno'){
+            return view('alumno.categorias',['categorias' => $categorias]);
+        
+        }else{ 
+            if(auth()->user()->tipo == 'Admin'){
+                return view('admin.categorias',['categorias' => $categorias]);
+            }
+            return view('profesor.categorias',['categorias' => $categorias]);
+
+        }
     }
 }

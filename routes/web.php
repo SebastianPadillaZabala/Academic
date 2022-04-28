@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfesoresController;
 use App\Http\Controllers\AlumnosController;
-
+use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,12 @@ Route::get('/log', function () {
 Route::post('/loggin',[LoginController::class, 'login'])
 ->name('loggin');
 
-////REGISTRAR PROFESOR
+////TODO ADMIN
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard');
+
+////TODO DE PROFESOR
 Route::get('/regProfe', function () {
     return view('auth.registerProf');
 })->name('reg');
@@ -32,7 +37,7 @@ Route::get('/profesor', function () {
     return view('profesor.dashboard');
 })->name('profesor.dashboard');
 
-////REGISTRAR ALUMNO
+////TODO DE ALUMNO
 Route::get('/regAlum', function () {
     return view('auth.registerAlum');
 })->name('regA');
@@ -41,6 +46,8 @@ Route::post('/registerAlum',[AlumnosController::class, 'create'])
 Route::get('/alumno', function () {
     return view('alumno.dashboard');
 })->name('alumno.dashboard');
+Route::get('/Categorias',[CategoriaController::class, 'categorias'])
+->name('categorias');
 
 
 Route::get('/', function () {
@@ -66,10 +73,6 @@ Route::get('/planes', function () {
 Route::get('/prueba', function () {
     return view('prueba');
 })->name('prueba');
-
-Route::get('/categorias', function () {
-    return view('categorias');
-})->name('categorias');
 
 Route::get('/equipo', function () {
     return view('grupo');
