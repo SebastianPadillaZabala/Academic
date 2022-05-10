@@ -14,7 +14,7 @@
                     class="flex items-center self-start justify-center px-5 py-3 mt-5 text-base font-medium leading-tight text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-lg shadow hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo md:py-4 md:text-lg md:px-8">Empieza
                     ahora!</a>
                 <a href="{{route('reg')}}"
-                    class="flex items-center self-start justify-center px-5 py-3 mt-5 ml-5 text-base font-medium leading-tight text-indigo-500 transition duration-150 ease-in-out bg-gray-200 border-transparent rounded-lg shadow hover:bg-white focus:outline-none focus:border-gray-100 focus:shadow-outline-gray md:py-4 md:text-lg md:px-8">Trabaja
+                    class="flex items-center self-start justify-center px-5 py-3 mt-5 ml-5 text-base leading-tight font-extrabold text-indigo-500 transition duration-150 ease-in-out bg-gray-200 border-transparent rounded-lg shadow hover:bg-white focus:outline-none focus:border-gray-100 focus:shadow-outline-gray md:py-4 md:text-lg md:px-8">Trabaja
                     con nosotros</a>
             </div>
         </div>

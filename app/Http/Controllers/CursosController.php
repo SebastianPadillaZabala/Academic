@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Alumno;
+use App\Models\Categoria;
+use App\Models\Curso;
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class AlumnosController extends Controller
+class CursosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +19,8 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    public function alumnos(){
-        $alumnos = DB::select('select * from alumnos INNER JOIN users
-        on alumnos.id_user = users.id');       
-        return view('admin.alumnos', ['alumnos' => $alumnos]);
+        $categoria = Categoria::all();
+        return view('auth.registrar_curso',['categoria'=>$categoria]);
     }
 
     /**
@@ -33,30 +30,19 @@ class AlumnosController extends Controller
      */
     public function create(Request $request)
     {
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->apellido = $request->input('apellido');
-        $user->celular = $request->input('celular');
-        $user->tipo = 'Alumno';
-        $user->email = $request->input('email');
-        $user->password = bcrypt( $request->input('password'));
-        $user->save();
+        $curso = new Curso();
+        $curso->name = $request->input('name');
+        $curso->image = $request->input('image');
+        $curso->descripcion = $request->input('descripcion');
+        $curso->cantidad_clases = 0;
+        $curso->estado = 'Revision';
+        $curso->fecha = Carbon::now();
+        $id_profesor = DB::table('profesores')->where('id_user', '=', auth()->user()->id)->value('id_profe');
+        $curso->id_prof = $id_profesor;
+        $curso->id_categoria = $_POST['select'];
+        $curso->save();                
 
-        $alumno = new Alumno();
-        $alumno->cantidad_cursos = 0;
-        $alumno->suscripcion = 'ninguna';
-        $alumno->id_user = DB::table('users')->max('id');
-        $alumno->save();
-
-        $email = $request->input('email');
-        $pass = $request->input('password');
-        $credentials = array(
-            'email' => $email,
-            'password' => $pass
-            );
-            $auth = Auth::attempt($credentials); 
-
-        return redirect()->route('alumno.dashboard');
+        return redirect()->route('profesor.cursos');
     }
 
     /**

@@ -1,11 +1,11 @@
 
   <div>
-    <nav class=" w-full py-0 bg-white shadow fixed z-10 dark:bg-gray-800">
+    <nav class=" w-full py-0 bg-gray-900 shadow fixed z-10 dark:bg-gray-800">
         <div class="container px-6 py-3 mx-auto">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="#">ACADEMIC</a>
+                        <a class="text-2xl font-bold text-white transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="#">ACADEMIC</a>
 
                         <!-- Search input on desktop screen -->
                         <div class="hidden mx-10 md:block">
@@ -34,10 +34,10 @@
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="items-center md:flex">
                     <div class="flex flex-col mt-2 md:flex-row md:mt-0 md:mx-1">
-                        <a class="my-1 text-sm leading-5 text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{route('home')}}">Home</a>
-                        <a class="my-1 text-sm leading-5 text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{Route('categorias')}}">Cursos</a>
-                        <a class="my-1 text-sm leading-5 text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{route('planes')}}">Planes</a>
-                        <a class="my-1 text-sm leading-5 text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{route('grupo')}}">Sobre nosotros</a>
+                        <a class="my-1 text-sm leading-5 text-white transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{route('home')}}">Home</a>
+                        <a class="my-1 text-sm leading-5 text-white transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{Route('categorias')}}">Cursos</a>
+                        <a class="my-1 text-sm leading-5 text-white transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{route('planes')}}">Planes</a>
+                        <a class="my-1 text-sm leading-5 text-white transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="{{route('grupo')}}">Sobre nosotros</a>
                     </div>
              @if(!auth()->user())
                     <div class="flex items-center py-2 -mx-1 md:mx-0">

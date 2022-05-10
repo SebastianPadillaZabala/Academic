@@ -10,7 +10,7 @@
         <head>
         <div class="h-screen w-full flex overflow-hidden">
  <!-- component -->
-<nav class="flex flex-col bg-indigo-500 dark:bg-white w-64 px-12 pt-4 pb-6">
+<nav class="flex flex-col bg-indigo-600 dark:bg-white w-64 px-12 pt-4 pb-6">
     <div>
         <div class="-mx-6 px-6 py-4">
             <a href="{{route('home')}}" title="home" class="font-bold text-white text-2xl">

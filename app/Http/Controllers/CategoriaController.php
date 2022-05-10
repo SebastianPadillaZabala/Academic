@@ -15,7 +15,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+          //
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.registerCat');
     }
 
     /**
@@ -36,7 +36,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Categoria();
+        $categoria->name = $request->input('nombre');
+        $categoria->descripcion = $request->input('descripcion');
+        $categoria->save();
+
+        return redirect()->route('Allcategoriastable');
     }
 
     /**
@@ -96,5 +101,11 @@ class CategoriaController extends Controller
             return view('profesor.categorias',['categorias' => $categorias]);
 
         }
+    }
+
+    public function categoriasTable(){
+        $categorias = Categoria::all();
+
+        return view('admin.TablaCategorias',['categorias'=>$categorias]);
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfesoresController;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CursosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +27,18 @@ Route::post('/loggin',[LoginController::class, 'login'])
 Route::get('/admin', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
+Route::get('/ACategorias',[CategoriaController::class, 'create'])
+->name('Acategorias');
+Route::get('/AllCategorias',[CategoriaController::class, 'categoriasTable'])
+->name('Allcategoriastable');
+Route::post('/ACategoriass',[CategoriaController::class, 'store'])
+->name('Añadircategorias');
+Route::get('/Allprofesores',[ProfesoresController::class, 'profesores'])
+->name('Allprofesores');
+Route::get('/Allalumnos',[AlumnosController::class, 'alumnos'])
+->name('Allalumnos');
 
-////TODO DE PROFESOR
+////TODO DE PROFESOR/////////////////
 Route::get('/regProfe', function () {
     return view('auth.registerProf');
 })->name('reg');
@@ -36,6 +47,13 @@ Route::post('/registerProfe',[ProfesoresController::class, 'create'])
 Route::get('/profesor', function () {
     return view('profesor.dashboard');
 })->name('profesor.dashboard');
+//REGISTRAR CURSO
+Route::get('/regcursp',[CursosController::class, 'index'])
+->name('regCurso');
+Route::post('/registerCurso',[CursosController::class, 'create'])
+->name('curso.register');
+Route::get('/CursosP',[ProfesoresController::class, 'obtener_Cursos'])
+->name('profesor.cursos');
 
 ////TODO DE ALUMNO
 Route::get('/regAlum', function () {
@@ -46,6 +64,10 @@ Route::post('/registerAlum',[AlumnosController::class, 'create'])
 Route::get('/alumno', function () {
     return view('alumno.dashboard');
 })->name('alumno.dashboard');
+
+
+
+
 Route::get('/Categorias',[CategoriaController::class, 'categorias'])
 ->name('categorias');
 

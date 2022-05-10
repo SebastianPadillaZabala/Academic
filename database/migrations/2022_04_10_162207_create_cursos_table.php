@@ -14,14 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cursos', function (Blueprint $table) {
-            $table->id('id_curso');
-            $table->unsignedBigInteger('id_categoria');
+            $table->id('id_curso');            
             $table->string('name');
             $table->string('image');
             $table->string('descripcion');
-            $table->timestamps();
+            $table->integer('cantidad_clases');
+            $table->string('estado'); 
+            $table->date('fecha'); 
+            $table->unsignedBigInteger('id_prof');
+            $table->unsignedBigInteger('id_categoria');
+            $table->timestamps();            
 
-            $table->foreign('id_categoria')->references('id_cat')->on('categorias');
+            $table->foreign('id_prof')->on('profesores')->references('id_profe')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_categoria')->on('categorias')->references('id_cat')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
