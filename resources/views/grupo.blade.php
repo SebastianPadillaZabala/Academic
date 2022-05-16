@@ -11,7 +11,7 @@
                 
                 <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-4">
                     <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-indigo-600 rounded-xl">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-1.fna.fbcdn.net/v/t1.6435-9/74673210_1626504874158123_7886364480139952128_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=8s0JaE4hEW4AX-el7D5&tn=fom2DBv2kLclAHZf&_nc_ht=scontent.fsrz1-1.fna&oh=00_AT9MoJxiYXT5xE66h2dbhTqcFS1dO8opREwGGw07NfpnKw&oe=627A1E9D" alt="">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t1.6435-9/74673210_1626504874158123_7886364480139952128_n.jpg?_nc_cat=111&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=LRHGw-hGsDEAX-Hw-gD&tn=fom2DBv2kLclAHZf&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT99md_pO7IsHB0SyN1HOI1SnXTH5ZvVfGqY6D0ISyKjZg&oe=62A9949D" alt="">
                         
                         <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Diego Vargas</h1>
                         
@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-indigo-600 rounded-xl">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t1.6435-9/154170605_3016169485328400_8997148806165931937_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=174925&_nc_ohc=XoRyczi7IPUAX_TaVbJ&tn=fom2DBv2kLclAHZf&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT-Yd5V_xA59Lu7Vvt0cSoCfproS7thU-qqkmmx4K1ao5Q&oe=627D7DA6" alt="">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t1.6435-9/154170605_3016169485328400_8997148806165931937_n.jpg?_nc_cat=102&ccb=1-6&_nc_sid=174925&_nc_ohc=g2pPuGZIAtgAX8_0gCx&tn=fom2DBv2kLclAHZf&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT9uJArwMXnP3InrKF85zk0eFXpjW8hcjD98NJuQWsc1kw&oe=62A8FF26" alt="">
                         
                         <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Heidy Olmos</h1>
                         
@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-indigo-600 rounded-xl">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t39.30808-6/245418499_4690283027703564_7627589068188176869_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=_4lVLC3dex0AX_joyL0&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT-AkteWqdv0Ou_rxZ5rIw-NNcMp0xwVKUjooQvWfnZsoA&oe=626661E2" alt="">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t39.30808-6/245418499_4690283027703564_7627589068188176869_n.jpg?_nc_cat=103&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=JGoFqfJarnIAX9lt-DS&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT8fwiiaSf0urtOSws6CL3TNOOq0OuCCDIPLTK2Uu8M0XQ&oe=62880022" alt="">
                         
                         <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Sebastian Padilla</h1>
                         

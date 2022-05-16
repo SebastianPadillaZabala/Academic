@@ -25,7 +25,7 @@
                             <select name="select">
                                 <option value="">Selecciona una Categoria</option>
                                 @foreach ($categoria as $c)
-                                    <option value="<?= $c->id_cat ?>"><?= $c->name?></option>
+                                    <option value="<?= $c->id_cat ?>"><?= $c->nombreCategoria?></option>
                                 @endforeach
                               </select>
                            <div class="input-group-append">

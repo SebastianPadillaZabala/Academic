@@ -5,9 +5,9 @@
 
     <div class="flex max-w-6xl mx-auto">
         <div class="container relative flex flex-col w-1/2 px-10 pb-1 pr-12 text-2xl font-hairline text-white">
-            <h2 class="relative z-20 text-5xl font-extrabold leading-tight text-white">ACADEMIC<br>Cursos Digitales
+            <h2 class="relative text-5xl font-extrabold leading-tight text-white">ACADEMIC<br>Cursos Digitales
             </h2>
-            <p class="relative z-20 block mt-4 text-xl">Un aprendizaje interesante habilidades para tu presente (y tu futuro). 
+            <p class="relative block mt-4 text-xl">Un aprendizaje interesante habilidades para tu presente (y tu futuro). 
                 Da tus primeros pasos con nosotros.!</p>
             <div class="flex mt-4">
                 <a href="{{route('log')}}"

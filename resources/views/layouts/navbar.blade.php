@@ -5,7 +5,7 @@
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <a class="text-2xl font-bold text-white transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="#">ACADEMIC</a>
+                        <a class="text-2xl font-bold text-white transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="{{route('home')}}">ACADEMIC</a>
 
                         <!-- Search input on desktop screen -->
                         <div class="hidden mx-10 md:block">
@@ -46,7 +46,7 @@
                     </div>
                     @else
                     <div class="flex items-center py-2 -mx-1 md:mx-0">
-                        <a class="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-indigo-600 md:mx-2 md:w-auto" href="">{{auth()->user()->name}}</a>
+                        <a class="block w-1/2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-indigo-600 md:mx-2 md:w-auto" href="{{route('re')}}">{{auth()->user()->name}}</a>
                         <form method="POST" action="{{route ('logout')}}">
                         @csrf
                         <a href="{{Route('logout')}}">

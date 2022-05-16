@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Categoria;
+use App\Models\Clase;
+use Illuminate\Support\Facades\DB;
 
-class CategoriaController extends Controller
+
+class ClasesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-          //
+        return view('auth.regClase', ['id'=>$id]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +27,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('admin.registerCat');
+        //
     }
 
     /**
@@ -34,14 +36,18 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $categoria = new Categoria();
-        $categoria->nombreCategoria = $request->input('nombre');
-        $categoria->descripcion = $request->input('descripcion');
-        $categoria->save();
-
-        return redirect()->route('Allcategoriastable');
+        $clase = new Clase();
+        $clase->Titulo = $request->input('Titulo');
+        $clase->Url = $request->input('Url');
+        $clase->Nro_clase = $request->input('Nro_clase');
+        $clase->descripcion = $request->input('descripcion');
+        $clase->tiempo = $request->input('tiempo');
+        $clase->id_curso = $id;
+        $clase->save();
+        
+        return redirect()->route('profesor.cursos');
     }
 
     /**
@@ -87,27 +93,5 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function categorias(){
-        $categorias = Categoria::all();
-        if(auth()->user()){
-        if(auth()->user()->tipo == 'Alumno'){
-            return view('alumno.categorias',['categorias' => $categorias]);
-        
-        }else{ 
-            if(auth()->user()->tipo == 'Admin'){
-                return view('backoffice.pages.admin.tablaCategorias',['categorias' => $categorias]);
-            }
-            return view('backoffice.pages.profesor.categorias',['categorias' => $categorias]);
-
-        }
-      }
-    return view('layouts.categorias', ['categorias' => $categorias]);
-    }
-
-    public function categoriasTable(){
-        $categorias = Categoria::all();
-        return view('backoffice.pages.admin.tablaCategorias',['categorias'=>$categorias]);
     }
 }

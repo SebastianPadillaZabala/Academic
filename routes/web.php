@@ -6,6 +6,9 @@ use App\Http\Controllers\ProfesoresController;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\PlanesController;
+use App\Http\Controllers\ClasesController;
+use App\Http\Livewire\ListaCurso;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +28,7 @@ Route::post('/loggin',[LoginController::class, 'login'])
 
 ////TODO ADMIN
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('backoffice.pages.admin.dashboard');
 })->name('admin.dashboard');
 Route::get('/ACategorias',[CategoriaController::class, 'create'])
 ->name('Acategorias');
@@ -37,6 +40,10 @@ Route::get('/Allprofesores',[ProfesoresController::class, 'profesores'])
 ->name('Allprofesores');
 Route::get('/Allalumnos',[AlumnosController::class, 'alumnos'])
 ->name('Allalumnos');
+Route::get('/Allcursos',[CursosController::class, 'cursosAdmin'])
+->name('CursosAdmin');
+Route::get('/Allcursoss',[CursosController::class, 'AllcursosAdmin'])
+->name('AllCursosAdmin');
 
 ////TODO DE PROFESOR/////////////////
 Route::get('/regProfe', function () {
@@ -45,7 +52,7 @@ Route::get('/regProfe', function () {
 Route::post('/registerProfe',[ProfesoresController::class, 'create'])
 ->name('profesor.register');
 Route::get('/profesor', function () {
-    return view('profesor.dashboard');
+    return view('backoffice.pages.profesor.dashboard');
 })->name('profesor.dashboard');
 //REGISTRAR CURSO
 Route::get('/regcursp',[CursosController::class, 'index'])
@@ -54,6 +61,12 @@ Route::post('/registerCurso',[CursosController::class, 'create'])
 ->name('curso.register');
 Route::get('/CursosP',[ProfesoresController::class, 'obtener_Cursos'])
 ->name('profesor.cursos');
+
+//CLASES
+Route::get('/regclase/{id}',[ClasesController::class, 'index'])
+->name('regClase');
+Route::post('/registerClase/{id}',[ClasesController::class, 'store'])
+->name('claseRegister');
 
 ////TODO DE ALUMNO
 Route::get('/regAlum', function () {
@@ -88,15 +101,27 @@ Route::get('/video', function () {
     return view('video.reproductor');
 })->name('video');
 
-Route::get('/planes', function () {
-    return view('layouts.planes');
-})->name('planes');
+/////PLANES
+Route::get('/planes',[PlanesController::class, 'index'])
+->name('planes');
+Route::get('/Tplanes',[PlanesController::class, 'tabla'])
+->name('Tplanes');
+Route::get('/Addplan',[PlanesController::class, 'create'])
+->name('Addplan');
+Route::post('/Rplan',[PlanesController::class, 'store'])
+->name('Rplan');
 
-Route::get('/prueba', function () {
-    return view('prueba');
-})->name('prueba');
+Route::get('/prueba/{cat}', [CursosController::class, 'livewire'])
+->name('prueba');
 
 Route::get('/equipo', function () {
     return view('grupo');
 })->name('grupo');
+Route::get('/redirect',[LoginController::class, 'index'])
+->name('re');
+
+Route::get('/t1', function () {
+    return view('backoffice.pages.admin.dashboard');
+});
+
 

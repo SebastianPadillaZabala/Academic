@@ -44,9 +44,9 @@
     @foreach($categorias as $cat)
     <div class="max-w-sm h-auto mx-auto my-8 rounded overflow-hidden shadow-lg transform transition-all hover:-translate-y-4">
     <a href="{{route('prueba')}}"> 
-    <img class="object-cover h-48 w-96" src="https://images.pexels.com/photos/4220967/pexels-photo-4220967.jpeg" alt="Volcano">
+    <img class="object-cover h-48 w-96" src="https://edustud.nic.in/edu/images/Academic1.jpg" alt="Volcano">
       <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2 hover:text-indigo-500 hover:cursor-pointer">{{$cat->name}}</div>
+        <div class="font-bold text-xl mb-2 hover:text-indigo-500 hover:cursor-pointer">{{$cat->nombreCategoria}}</div>
            <p class="text-gray-700 text-base">
            {{$cat->descripcion}}
           </p>

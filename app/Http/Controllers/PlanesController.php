@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\Plan;
 
-class LoginController extends Controller
+
+class PlanesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +16,14 @@ class LoginController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->tipo == 'Admin'){
-            return redirect()->route('admin.dashboard');
+        $planes = Plan::all();
+        return view('layouts.planes', ['planes' => $planes]);
+    }
 
-        }
-        if(auth()->user()->tipo == 'Profesor'){
-            return redirect()->route('profesor.dashboard'); 
-        }
-        if(auth()->user()->tipo == 'Alumno'){
-            return redirect()->route('alumno.dashboard');
-
-        }
+    public function tabla()
+    {
+        $planes = Plan::all();
+        return view('backoffice.pages.admin.tablaPlanes', ['planes' => $planes]);
     }
 
     /**
@@ -35,35 +33,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    public function login(Request $request)
-    {
-        $email = $request->input('email');
-        $pass = $request->input('password');
-        $credentials = array(
-            'email' => $email,
-            'password' => $pass
-            );
-            $auth = Auth::attempt($credentials); 
-         if($auth){
-            $tipo = Auth::user()->tipo;
-            if ($tipo == 'Alumno') {
-                return redirect()->route('alumno.dashboard');
-            }else{
-                if($tipo == 'Profesor'){
-                    return view('backoffice.pages.profesor.dashboard');    
-                }
-                return view('backoffice.pages.admin.dashboard');
-            }
-        }else{
-           return back()->withErrors([
-            'message' => 'El usuario o la contraseña son incorrectos'
-        ]);
-        
-        }
-      
+        return view('auth.registerPlan');
     }
 
     /**
@@ -74,7 +44,14 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $plan = new Plan();
+        $plan->nombre_Plan = $request->input('name');
+        $plan->Precio = $request->input('Precio');
+        $plan->descripcion = $request->input('descripcion');
+        $plan->duracion = $request->input('duracion');
+        $plan->save();
+
+        return redirect()->route('Tplanes');
     }
 
     /**

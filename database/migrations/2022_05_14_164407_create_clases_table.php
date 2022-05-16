@@ -13,11 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->id('id_cat');
-            $table->string('nombreCategoria');
+        Schema::create('clases', function (Blueprint $table) {
+            $table->id('id_clase');
+            $table->string('Titulo');
+            $table->string('Url');
+            $table->integer('Nro_clase');
             $table->string('descripcion');
+            $table->string('tiempo'); 
+            $table->unsignedBigInteger('id_curso');
             $table->timestamps();
+
+            $table->foreign('id_curso')->on('cursos')->references('id_curso')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('clases');
     }
 };

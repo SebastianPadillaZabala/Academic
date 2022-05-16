@@ -23,7 +23,7 @@ class AlumnosController extends Controller
     public function alumnos(){
         $alumnos = DB::select('select * from alumnos INNER JOIN users
         on alumnos.id_user = users.id');       
-        return view('admin.alumnos', ['alumnos' => $alumnos]);
+        return view('backoffice.pages.admin.tablaAlumnos', ['alumnos' => $alumnos]);
     }
 
     /**

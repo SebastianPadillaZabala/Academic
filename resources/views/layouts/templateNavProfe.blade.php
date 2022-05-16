@@ -92,7 +92,7 @@
 </nav>
         </head>
         <main class="py-0 lg-auto w-full h-full">
-            <div class="container mx-auto overflow-y-auto" >
+            <div class="container mx-auto overflow-y-auto">
                 @yield('content')
             </div>
         </main>
