@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
-
+    'admin_role' => env('ADMIN_ROLE','administrador'),
+    'profesor_role' => env('PROFESOR_ROLE','profesor'),
+     'estudiante_role' => env('ESTUDIANTE_ROLE','estudiante'),
+    
     /*
     |--------------------------------------------------------------------------
     | Application Name

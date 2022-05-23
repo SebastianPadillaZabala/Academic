@@ -14,4 +14,6 @@ class Categoria extends Model
     ];
     protected $primaryKey = 'id_cat';
 
+    static public $atributos = ['nombreCategoria', 'descripcion'];
+
 }

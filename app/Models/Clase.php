@@ -14,4 +14,6 @@ class Clase extends Model
     ];
     protected $primaryKey = 'id_clase';
 
+    static public $atributos = ['Titulo', 'Url', 'Nro_clase', 'descripcion', 'tiempo'];
+
 }

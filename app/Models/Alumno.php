@@ -14,4 +14,6 @@ class Alumno extends Model
         'cantidad_cursos', 'suscripcion'. 'id_user'
     ];
     protected $primaryKey = 'id_alum';
+    
+    static public $atributos=['cantidad_cursos', 'suscripcion'];
 }

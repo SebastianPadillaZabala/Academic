@@ -15,8 +15,14 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*
+    public function __construct()
+    {
+        $this->middleware('role:' . config('app.admin_role'));
+    }}*/
     public function index()
     {
+        //$this->authorize('index',Role::class);
         return view('backoffice.pages.permission.index',[
             'permissions'=>Permission::all(),
         ]);
@@ -29,6 +35,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        //$this->authorize('create',Role::class);
         return view('backoffice.pages.permission.create',[
             'roles'=>Role::all(),
         ]);
@@ -42,6 +49,7 @@ class PermissionController extends Controller
      */
     public function store(StoreRequest $request, Permission $permission)
     {
+
         $permission = $permission->store($request);
         return redirect()->route('backoffice.permission.show',$permission);
     }
@@ -49,11 +57,12 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     *  @param  \App\Models\Permission  $permission
+     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
     public function show(Permission $permission)
     {
+        //$this->authorize('view', $permission);
         return view('backoffice.pages.permission.show',[
             'permission' => $permission
         ]);
@@ -67,6 +76,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
+        //$this->authorize('update', $permission);
         return view('backoffice.pages.permission.edit',[
             'permission'=>$permission,
             'roles'=>Role::all()
@@ -76,23 +86,24 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateRequest  $request
+     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Permission $permission)
     {
-        //
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     *@param  \App\Models\Permission  $permission
+     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
     public function destroy(Permission $permission)
     {
+        //$this->authorize('delete', $permission);
         $role = $permission->role;
         $permission->delete();
         return redirect()->route('backoffice.role.show',$role);

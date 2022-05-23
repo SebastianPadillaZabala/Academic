@@ -9,20 +9,24 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function __construct()
     {
         $this->middleware('role:' . config('app.admin_role'));
     }
+    
     public function index()
     {
+        $this->authorize('index',Role::class);
         return view('backoffice.pages.role.index',[
             'roles'=>Role::all(),
-        ]);    }
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -31,6 +35,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Role::class);
         return view('backoffice.pages.role.create');
     }
 
@@ -42,6 +47,7 @@ class RoleController extends Controller
      */
     public function store(StoreRequest $request, Role $role)
     {
+
         $role = $role->store($request);
         return redirect()->route('backoffice.role.show',$role);
     }
@@ -54,6 +60,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        $this->authorize('view',$role);
         return view('backoffice.pages.role.show',[
             'role' => $role,
             'permissions'=>$role->permissions
@@ -68,6 +75,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $this->authorize('update',$role);
         return view('backoffice.pages.role.edit',[
             'role'=>$role,
         ]);
@@ -94,6 +102,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        $this->authorize('delete',$role);
         $role->delete();
         return redirect()->route('backoffice.role.index');
     }

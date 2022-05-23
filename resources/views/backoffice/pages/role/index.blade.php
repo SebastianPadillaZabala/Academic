@@ -21,24 +21,16 @@
 @endsection
 
 <main class="h-screen w-full">
-    <div class="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+    <div class="ml-auto ">
         <div class="sticky z-10 top-0 h-16 border-b lg:py-0">
             <div class="px-2 flex items-center justify-between space-x-4 2xl:container">
-                <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">Categorias</h5>
+                <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">Roles del sistema</h5>
                 <button class="w-12 h-16 -mr-2 border-r lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <div class="flex space-x-4">
-                    <!--/search bar -->
-                    <div hidden class="md:block">
-                        <a href="{{route('Acategorias')}}">
-                            <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Añadir Categoria</button>
-                        </a>
-                    </div>
-                    <!--search bar -->
-                </div>
+
             </div>
             <!-- component -->
             <table class="min-w-full max-w-max border-collapse block md:table ">

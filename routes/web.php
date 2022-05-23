@@ -5,10 +5,12 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfesoresController;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\PlanesController;
 use App\Http\Controllers\ClasesController;
 use App\Http\Livewire\ListaCurso;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -131,9 +133,24 @@ Route::get('/clase/{id}',[ClasesController::class, 'redirect'])
 Route::get('/curso/clase/{id}',[ClasesController::class, 'redirectClase'])
 ->name('claseR');
 
+Route::get('/reportes',function () {
+    return view('backoffice.layouts.reporte');
+})->name('reporte');
+Route::post('/reportes',[ReportesController::class, 'validar'])->name('reporte.validar');
+Route::get('/reportePDF',[ReportesController::class, 'index'])->name('reporte.index');
+
 Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
     Route::resource('role','App\Http\Controllers\RoleController');
+    Route::get('user/{user}/assign_role','App\Http\Controllers\UserController@assign_role')
+        ->name('user.assign_role');
+    Route::post('user/{user}/role_assignment','App\Http\Controllers\UserController@role_assignment')
+        ->name('user.role_assignment');
+
     Route::resource('permission','App\Http\Controllers\PermissionController');
+    Route::get('user/{user}/assign_permission','App\Http\Controllers\UserController@assign_permission')
+        ->name('user.assign_permission');
+    Route::post('user/{user}/permission_assignment','App\Http\Controllers\UserController@permission_assignment')
+        ->name('user.permission_assignment');
+
+    Route::resource('user','App\Http\Controllers\UserController');
 });
-
-

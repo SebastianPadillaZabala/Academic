@@ -14,4 +14,6 @@ class Profesor extends Model
         'fecha_nac', 'descripcion', 'id_user'
     ];
     protected $primaryKey = 'id_profe';
+
+    static public $atributos = ['fecha_nac', 'descripcion'];
 }
