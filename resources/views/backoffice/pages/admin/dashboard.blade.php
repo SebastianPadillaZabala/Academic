@@ -17,6 +17,8 @@
             </h5>
         <span class="hidden text-white lg:block">{{auth()->user()->tipo}}</span>
     @endsection
+    
 @endsection('content')
+
 @section('foot')
 @endsection

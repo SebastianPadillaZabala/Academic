@@ -44,6 +44,10 @@ Route::get('/Allcursos',[CursosController::class, 'cursosAdmin'])
 ->name('CursosAdmin');
 Route::get('/Allcursoss',[CursosController::class, 'AllcursosAdmin'])
 ->name('AllCursosAdmin');
+Route::get('/ValidateC/{id}',[CursosController::class, 'cursosVal'])
+->name('cursosVal');
+Route::post('/ValidateCurso/{id}',[CursosController::class, 'validarCurso'])
+->name('cursoValidate');
 
 ////TODO DE PROFESOR/////////////////
 Route::get('/regProfe', function () {
@@ -117,11 +121,19 @@ Route::get('/prueba/{cat}', [CursosController::class, 'livewire'])
 Route::get('/equipo', function () {
     return view('grupo');
 })->name('grupo');
+
 Route::get('/redirect',[LoginController::class, 'index'])
 ->name('re');
 
-Route::get('/t1', function () {
-    return view('backoffice.pages.admin.dashboard');
+Route::get('/clase/{id}',[ClasesController::class, 'redirect'])
+->name('clase');
+
+Route::get('/curso/clase/{id}',[ClasesController::class, 'redirectClase'])
+->name('claseR');
+
+Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
+    Route::resource('role','App\Http\Controllers\RoleController');
+    Route::resource('permission','App\Http\Controllers\PermissionController');
 });
 
 

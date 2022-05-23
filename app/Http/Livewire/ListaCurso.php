@@ -19,7 +19,8 @@ class ListaCurso extends Component
     public function render()
     {
         $cursos = new Curso();
-        $cursos = DB::table('cursos')->where('id_categoria', '=', $this->cat)->get();   
+        $cursos = DB::table('cursos')->where('id_categoria', '=', $this->cat)
+        ->where('estado', '=', 'Aceptado')->get();   
         return view('livewire.lista-curso', [
             'cursos' => $cursos
         ]);
