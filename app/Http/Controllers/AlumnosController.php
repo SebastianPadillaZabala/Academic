@@ -7,6 +7,7 @@ use App\Models\Alumno;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AlumnosController extends Controller
 {
@@ -55,6 +56,13 @@ class AlumnosController extends Controller
             'password' => $pass
             );
             $auth = Auth::attempt($credentials); 
+            $info = [
+                'IP' => $request->getClientIp(),
+                'id_alumno' => $alumno->id_alum,
+                'email' => $user->email,
+                'id_usuario' => $user->id,
+            ];
+            Log::channel('mydailylogs')->info('Registro Alumno: ', $info);
 
         return redirect()->route('alumno.dashboard');
     }

@@ -13,7 +13,8 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "rap2hpoutre/laravel-log-viewer": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

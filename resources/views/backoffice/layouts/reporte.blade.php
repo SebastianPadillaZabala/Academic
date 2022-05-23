@@ -28,7 +28,7 @@
                             @include('backoffice.layouts.includes.breadcrumbsR')
                             @include('backoffice.layouts.includes.dropdown')                            
                             <!--start container-->
-                                <div class="container p-3">
+                                <div class="container p-4">
                                     @livewire('reporte')                                    
                                 </div>
                                 <!--end container-->

@@ -11,6 +11,7 @@ use App\Http\Controllers\PlanesController;
 use App\Http\Controllers\ClasesController;
 use App\Http\Livewire\ListaCurso;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Log;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -132,6 +133,8 @@ Route::get('/clase/{id}',[ClasesController::class, 'redirect'])
 
 Route::get('/curso/clase/{id}',[ClasesController::class, 'redirectClase'])
 ->name('claseR');
+
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 
 Route::get('/reportes',function () {
     return view('backoffice.layouts.reporte');

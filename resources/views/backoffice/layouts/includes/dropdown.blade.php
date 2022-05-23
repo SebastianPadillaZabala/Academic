@@ -1,4 +1,5 @@
-<div class="group inline-block ">
+<div class="flex space-x-4 pt-2 pr-2">
+<div class="group inline-block ml-auto">
     <button
         class="outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center min-w-32"
     >
@@ -17,11 +18,11 @@
     </span>
     </button>
     <ul
-        class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
+        class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-400 ease-in-out origin-top min-w-32">
         @yield('dropdown')
     </ul>
 </div>
-
+</div>
 <style>
     li>ul                 { transform: translatex(100%) scale(0) }
     li:hover>ul           { transform: translatex(101%) scale(1) }

@@ -26,7 +26,9 @@
                         <!-- START CONTENT -->
                         <section id="content" >
                             @include('backoffice.layouts.includes.breadcrumbs')
+                            @if(auth()->user()->tipo == 'Administrador')
                             @include('backoffice.layouts.includes.dropdown')
+                            @endif
                             <!--start container-->
                                 <div class="container p-3">
                                     @yield('content')

@@ -55,7 +55,7 @@
                 <a href="{{route('regClase',[$c->id_curso])}}">                             
                 <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Clase</button>
                 <a/>
-                <a href="">   
+                <a href="{{route('clase',[$c->id_curso])}}">   
                 <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Revisar</button>
                 <a/>
               </div>
