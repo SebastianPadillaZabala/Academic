@@ -23,8 +23,10 @@ use App\Http\Livewire\ListaCurso;
 Route::get('/log', function () {
     return view('auth.loginE');
 })->name('log');
+
 Route::post('/loggin',[LoginController::class, 'login'])
 ->name('loggin');
+
 
 ////TODO ADMIN
 Route::get('/admin', function () {
@@ -36,8 +38,10 @@ Route::get('/AllCategorias',[CategoriaController::class, 'categoriasTable'])
 ->name('Allcategoriastable');
 Route::post('/ACategoriass',[CategoriaController::class, 'store'])
 ->name('Añadircategorias');
+
 Route::get('/Allprofesores',[ProfesoresController::class, 'profesores'])
 ->name('Allprofesores');
+
 Route::get('/Allalumnos',[AlumnosController::class, 'alumnos'])
 ->name('Allalumnos');
 Route::get('/Allcursos',[CursosController::class, 'cursosAdmin'])
@@ -51,9 +55,15 @@ Route::get('/regProfe', function () {
 })->name('reg');
 Route::post('/registerProfe',[ProfesoresController::class, 'create'])
 ->name('profesor.register');
+
+Route::get('/profesor/{profesor}',[ProfesoresController::class,'show'])
+    ->name('profesor.show');
+
+
 Route::get('/profesor', function () {
     return view('backoffice.pages.profesor.dashboard');
 })->name('profesor.dashboard');
+
 //REGISTRAR CURSO
 Route::get('/regcursp',[CursosController::class, 'index'])
 ->name('regCurso');
@@ -77,6 +87,7 @@ Route::post('/registerAlum',[AlumnosController::class, 'create'])
 Route::get('/alumno', function () {
     return view('alumno.dashboard');
 })->name('alumno.dashboard');
+Route::resource('alumno','App\Http\Controllers\AlumnosController');
 
 
 
@@ -120,8 +131,23 @@ Route::get('/equipo', function () {
 Route::get('/redirect',[LoginController::class, 'index'])
 ->name('re');
 
-Route::get('/t1', function () {
-    return view('backoffice.pages.admin.dashboard');
+Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
+    Route::resource('role','App\Http\Controllers\RoleController');
+    Route::get('user/{user}/assign_role','App\Http\Controllers\UserController@assign_role')
+        ->name('user.assign_role');
+    Route::post('user/{user}/role_assignment','App\Http\Controllers\UserController@role_assignment')
+        ->name('user.role_assignment');
+
+    Route::resource('permission','App\Http\Controllers\PermissionController');
+    Route::get('user/{user}/assign_permission','App\Http\Controllers\UserController@assign_permission')
+        ->name('user.assign_permission');
+    Route::post('user/{user}/permission_assignment','App\Http\Controllers\UserController@permission_assignment')
+        ->name('user.permission_assignment');
+
+    Route::resource('user','App\Http\Controllers\UserController');
 });
 
 
+Route::get('test1',function (){
+    return view('frontoffice.pages.profile.index');
+});

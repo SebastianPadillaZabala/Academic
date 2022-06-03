@@ -24,7 +24,7 @@ class CreateApiTokenTest extends TestCase
         Livewire::test(ApiTokenManager::class)
                     ->set(['createApiTokenForm' => [
                         'name' => 'Test Token',
-                        'permissions' => [
+                        'permission' => [
                             'read',
                             'update',
                         ],

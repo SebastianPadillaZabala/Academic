@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class LoginController extends Controller
+class   LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class LoginController extends Controller
 
         }
         if(auth()->user()->tipo == 'Profesor'){
-            return redirect()->route('profesor.dashboard'); 
+            return redirect()->route('profesor.dashboard');
         }
         if(auth()->user()->tipo == 'Alumno'){
             return redirect()->route('alumno.dashboard');
@@ -46,14 +46,14 @@ class LoginController extends Controller
             'email' => $email,
             'password' => $pass
             );
-            $auth = Auth::attempt($credentials); 
+            $auth = Auth::attempt($credentials);
          if($auth){
             $tipo = Auth::user()->tipo;
             if ($tipo == 'Alumno') {
                 return redirect()->route('alumno.dashboard');
             }else{
                 if($tipo == 'Profesor'){
-                    return view('backoffice.pages.profesor.dashboard');    
+                    return view('backoffice.pages.profesor.dashboard');
                 }
                 return view('backoffice.pages.admin.dashboard');
             }
@@ -61,9 +61,9 @@ class LoginController extends Controller
            return back()->withErrors([
             'message' => 'El usuario o la contraseña son incorrectos'
         ]);
-        
+
         }
-      
+
     }
 
     /**

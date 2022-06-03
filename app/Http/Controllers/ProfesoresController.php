@@ -49,7 +49,7 @@ class ProfesoresController extends Controller
             'email' => $email,
             'password' => $pass
             );
-            $auth = Auth::attempt($credentials); 
+            $auth = Auth::attempt($credentials);
 
             return view('backoffice.pages.profesor.dashboard');
     }
@@ -73,18 +73,24 @@ class ProfesoresController extends Controller
      */
     public function show($id)
     {
-        //
+        $profesor =  DB::table('profesores')
+            ->where('id_profe','=',$id)
+            ->select('profesores.*')
+            ->first();
+        return view('backoffice.pages.profesor.show',[
+            'profesor'=>$profesor,
+        ]);
     }
 
     public function obtener_cursos(){
         $id_profesor = DB::table('profesores')->where('id_user', '=', auth()->user()->id)->value('id_profe');
-        $cursos = DB::table('cursos')->where('id_prof', '=', $id_profesor)->get();        
+        $cursos = DB::table('cursos')->where('id_prof', '=', $id_profesor)->get();
         return view('backoffice.pages.profesor.cursos',['cursos' => $cursos]);
     }
 
     public function profesores(){
         $profesor = DB::select('select * from profesores INNER JOIN users
-        on profesores.id_user = users.id');       
+        on profesores.id_user = users.id');
         return view('backoffice.pages.admin.tablaProfesores', ['profesores' => $profesor]);
     }
 

@@ -7,9 +7,7 @@
                 </a>
             </div>
             <div class="mt-8 text-center">
-                
                     @yield('name')
-            
             </div>
             <ul class="space-y-2 tracking-wide mt-5">
             <li>
@@ -21,8 +19,8 @@
                         </svg>
                         <span class="group-hover:text-gray-700">Cursos</span>
                     </a>
-                @endif    
-               @if(auth()->user()->tipo != 'Admin') 
+                @endif
+               @if(auth()->user()->tipo != 'Admin')
                 <a href="{{route('profesor.cursos')}}" class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white group">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
@@ -30,10 +28,10 @@
                         </svg>
                         <span class="group-hover:text-gray-700">Mis Cursos</span>
                 </a>
-                @endif 
+                @endif
             </li>
             <li>
-                @if(auth()->user()->tipo == 'Admin')
+                @if(auth()->user()->tipo == 'Administrador')
                     <a href="{{route('Allcategoriastable')}}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-white group">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
@@ -41,8 +39,16 @@
                         </svg>
                         <span class="group-hover:text-gray-700">Categorias</span>
                     </a>
+                    <a href="{{route('backoffice.user.index')}}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-white group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
+                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
+                        </svg>
+                        <span class="group-hover:text-gray-700">Usuarios</span>
+                    </a>
                 @endif
-                @if(auth()->user()->tipo != 'Admin') 
+
+                @if(auth()->user()->tipo != 'Administrador')
                 <a href="{{route('categorias')}}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-white group">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
@@ -50,7 +56,8 @@
                         </svg>
                         <span class="group-hover:text-gray-700">Categorias</span>
                     </a>
-                    @endif 
+
+                    @endif
             </li>
            @if(auth()->user()->tipo != 'Profesor')
            <li>
@@ -89,6 +96,25 @@
                     <span class="group-hover:text-gray-700">Reportes</span>
                 </a>
             </li>
+                    <li>
+                        <a href="{{route('backoffice.role.index')}}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-white group">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd" />
+                                <path class="fill-current text-gray-300 group-hover:text-cyan-300" d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+                            </svg>
+                            <span class="group-hover:text-gray-700">Roles</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('backoffice.permission.index')}}" class="px-4 py-3 flex items-center space-x-4 rounded-md text-white group">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd" />
+                                <path class="fill-current text-gray-300 group-hover:text-cyan-300" d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+                            </svg>
+                            <span class="group-hover:text-gray-700">Permisos</span>
+                        </a>
+                    </li>
+
             @endif
         </ul>
         </div>

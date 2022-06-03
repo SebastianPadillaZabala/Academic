@@ -61,4 +61,44 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function profesor(){
+        return $this->hasOne(Profesor::class,'id_profe','id');
+    }
+    public function roles(){
+        return $this->belongsToMany('App\Models\Role')->withTimestamps();
+    }
+    public function permissions(){
+        return $this->belongsToMany('App\Models\Permission')->withTimestamps();
+    }
+    public function has_permission($id)
+    {
+        $flag=false;
+        foreach ($this->permissions as $permission){
+            if ($permission->id == $id || $permission->slug == $id){
+                $flag = true;
+            }
+        }
+        return $flag;
+    }
+    public function has_any_role(array $roles): bool
+    {
+        foreach ($roles as $role){
+            if ($this->has_role($role)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public function has_role($id)
+    {
+        $flag =false;
+        foreach ($this->roles as $role){
+            if ($role->id == $id || $role->slug == $id ){
+                $flag = true;
+            }
+        }
+        return $flag;
+    }
+    //asinacion de roles y permisos
+
 }
