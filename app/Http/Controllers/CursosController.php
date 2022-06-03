@@ -117,4 +117,16 @@ class CursosController extends Controller
     public function livewire($cat){
       return view('prueba', ['cat'=>$cat]);
     }
+
+    public function cursosVal($id){
+       return view('auth.validarCurso',['id'=>$id]);
+    }
+
+    public function validarCurso($id){
+       $curso = Curso::find($id);
+       $curso->estado =  $_POST['select'];
+       $curso->save();
+      
+       return redirect()->route('CursosAdmin');
+    }
 }

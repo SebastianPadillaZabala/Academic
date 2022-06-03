@@ -27,6 +27,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
+               <!--/search bar -->
+               <div hidden class="md:block">                    
+                    <a href="{{Route('regCurso')}}">
+                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Añadir curso</button>
+                    </a>                                
+                </div>  
         </div>
         <div class="px-10 py-8 grid gap-3 lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-4">
           @foreach($cursos as $c)
@@ -49,7 +55,7 @@
                 <a href="{{route('regClase',[$c->id_curso])}}">                             
                 <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Clase</button>
                 <a/>
-                <a href="">   
+                <a href="{{route('clase',[$c->id_curso])}}">   
                 <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Revisar</button>
                 <a/>
               </div>

@@ -14,4 +14,6 @@ class Plan extends Model
         'nombre_Plan', 'descripcion', 'Precio', 'duracion'
     ];
     protected $primaryKey = 'id_Plan';
+
+    static public $atributos = ['nombre_Plan', 'descripcion', 'Precio', 'duracion'];
 }

@@ -5,10 +5,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfesoresController;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\PlanesController;
 use App\Http\Controllers\ClasesController;
 use App\Http\Livewire\ListaCurso;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Log;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +51,10 @@ Route::get('/Allcursos',[CursosController::class, 'cursosAdmin'])
 ->name('CursosAdmin');
 Route::get('/Allcursoss',[CursosController::class, 'AllcursosAdmin'])
 ->name('AllCursosAdmin');
+Route::get('/ValidateC/{id}',[CursosController::class, 'cursosVal'])
+->name('cursosVal');
+Route::post('/ValidateCurso/{id}',[CursosController::class, 'validarCurso'])
+->name('cursoValidate');
 
 ////TODO DE PROFESOR/////////////////
 Route::get('/regProfe', function () {
@@ -128,8 +135,23 @@ Route::get('/prueba/{cat}', [CursosController::class, 'livewire'])
 Route::get('/equipo', function () {
     return view('grupo');
 })->name('grupo');
+
 Route::get('/redirect',[LoginController::class, 'index'])
 ->name('re');
+
+Route::get('/clase/{id}',[ClasesController::class, 'redirect'])
+->name('clase');
+
+Route::get('/curso/clase/{id}',[ClasesController::class, 'redirectClase'])
+->name('claseR');
+
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
+Route::get('/reportes',function () {
+    return view('backoffice.layouts.reporte');
+})->name('reporte');
+Route::post('/reportes',[ReportesController::class, 'validar'])->name('reporte.validar');
+Route::get('/reportePDF',[ReportesController::class, 'index'])->name('reporte.index');
 
 Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
     Route::resource('role','App\Http\Controllers\RoleController');
@@ -147,7 +169,3 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
     Route::resource('user','App\Http\Controllers\UserController');
 });
 
-
-Route::get('test1',function (){
-    return view('frontoffice.pages.profile.index');
-});

@@ -48,11 +48,12 @@ class User extends Authenticatable
      * The attributes that should be cast.
      *
      * @var array
-     */
+     */  
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
+    static public $atributos = ['name','email','apellido','celular','tipo',];
     /**
      * The accessors to append to the model's array form.
      *
@@ -100,5 +101,8 @@ class User extends Authenticatable
         return $flag;
     }
     //asinacion de roles y permisos
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
 }

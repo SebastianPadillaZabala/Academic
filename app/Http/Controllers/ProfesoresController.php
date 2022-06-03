@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Profesor;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Facades\DB;
 
@@ -49,7 +50,18 @@ class ProfesoresController extends Controller
             'email' => $email,
             'password' => $pass
             );
+<<<<<<< HEAD
             $auth = Auth::attempt($credentials);
+=======
+            $auth = Auth::attempt($credentials); 
+            $info = [
+                'IP' => $request->getClientIp(),
+                'id_profesor' => $profesor->id_profe,
+                'email' => $user->email,
+                'id_usuario' => $user->id,
+            ];
+            Log::channel('mydailylogs')->info('Registro Profesor: ', $info);
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
 
             return view('backoffice.pages.profesor.dashboard');
     }

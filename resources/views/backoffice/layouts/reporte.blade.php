@@ -5,7 +5,7 @@
         @include('backoffice.layouts.includes.head')
     </head>
     <body>
-        <div class="flex bg-gray-200">
+        <div class="flex h-screen bg-gray-200">
             @include('backoffice.layouts.includes.leftsidebar')
             <div class="flex-1 flex flex-col mx-auto overflow-y-auto">
                 <!-- Start Page Loading -->
@@ -25,13 +25,11 @@
                         <!-- //////////////////////////////////////////////////////////////////////////// -->
                         <!-- START CONTENT -->
                         <section id="content" >
-                            @include('backoffice.layouts.includes.breadcrumbs')
-                            @if(auth()->user()->tipo == 'Administrador')
-                            @include('backoffice.layouts.includes.dropdown')
-                            @endif
+                            @include('backoffice.layouts.includes.breadcrumbsR')
+                            @include('backoffice.layouts.includes.dropdown')                            
                             <!--start container-->
-                                <div class="container p-3">
-                                    @yield('content')
+                                <div class="container p-4">
+                                    @livewire('reporte')                                    
                                 </div>
                                 <!--end container-->
                         </section>
@@ -54,5 +52,38 @@
         ================================================ -->
         <!-- jQuery Library -->
         @include('backoffice.layouts.includes.foot')
+        <script>
+            function data() {
+                return {
+                    isSideMenuOpen: false,
+                    toggleSideMenu() {
+                        this.isSideMenuOpen = !this.isSideMenuOpen
+                    },
+                    closeSideMenu() {
+                        this.isSideMenuOpen = false
+                    },
+                    isNotificationsMenuOpen: false,
+                    toggleNotificationsMenu() {
+                        this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen
+                    },
+                    closeNotificationsMenu() {
+                        this.isNotificationsMenuOpen = false
+                    },
+                    isProfileMenuOpen: false,
+                    toggleProfileMenu() {
+                        this.isProfileMenuOpen = !this.isProfileMenuOpen
+                    },
+                    closeProfileMenu() {
+                        this.isProfileMenuOpen = false
+                    },
+                    isPagesMenuOpen: false,
+                    togglePagesMenu() {
+                        this.isPagesMenuOpen = !this.isPagesMenuOpen
+                    },
+                }
+            }
+        </script>
+        @livewireScripts
     </body>
+
 </html>

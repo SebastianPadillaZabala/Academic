@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class   LoginController extends Controller
 {
@@ -48,7 +49,15 @@ class   LoginController extends Controller
             );
             $auth = Auth::attempt($credentials);
          if($auth){
-            $tipo = Auth::user()->tipo;
+            $user = Auth::user();
+            $tipo = $user->tipo;
+            $info = [
+                'IP' => $request->getClientIp(),
+                'id' => $user->id,
+                'email' => $user->email,
+                'tipo' => $tipo,
+            ];
+            Log::channel('mydailylogs')->info('Inicio de sesion: ', $info);
             if ($tipo == 'Alumno') {
                 return redirect()->route('alumno.dashboard');
             }else{

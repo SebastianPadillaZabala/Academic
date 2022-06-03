@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+=======
+use Illuminate\Http\Request;
+use App\Models\Permission;
+use App\Models\User;
+use App\Models\Role;
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
 
 class UserController extends Controller
 {
@@ -17,12 +24,20 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('role:' . config('app.admin_role') . '-' .
+<<<<<<< HEAD
             config('app.profedor_role')
+=======
+            config('app.profesor_role')
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
         );
 
     }
     public function index()
     {
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
         $this->authorize('index', User::class);
         return view('backoffice.pages.user.index',[
             'users'=> auth()->user()->all(),
@@ -102,27 +117,43 @@ class UserController extends Controller
         return redirect()->route('backoffice.user.index');
     }
     public function assign_role(User $user){
+<<<<<<< HEAD
         //$this->authorize('assign_role', $user);
+=======
+        $this->authorize('assign_role', $user);
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
         return view('backoffice.pages.user.assign_role',[
             'user'=>$user,
             'roles'=>Role::all()
         ]);
     }
     public function role_assignment(Request $request,User $user){
+<<<<<<< HEAD
         //$this->authorize('assign_role', $user);
+=======
+        $this->authorize('assign_role', $user);
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
         $user->role_assignment($request);
         return redirect()->route('backoffice.user.show',$user);
 
     }
     public function assign_permission(User $user){
+<<<<<<< HEAD
         //$this->authorize('assign_permission', $user);
+=======
+        $this->authorize('assign_permission', $user);
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
         return view('backoffice.pages.user.assign_permission',[
             'user' => $user,
             'roles' => $user->roles
         ]);
     }
     public function permission_assignment(Request $request, User $user){
+<<<<<<< HEAD
         //$this->authorize('assign_permission', $user);
+=======
+        $this->authorize('assign_permission', $user);
+>>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
         $user->permissions()->sync($request->permissions);
         return redirect()->route('backoffice.user.show',$user);
     }
