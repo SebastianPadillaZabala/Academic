@@ -13,11 +13,7 @@
 @endsection
 @section('content')
 @section('name')
-<<<<<<< HEAD
-    <img src="https://cdn-icons-png.flaticon.com/512/2643/2643361.png" alt="" class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
-=======
     <img src="https://cdn-icons-png.flaticon.com/512/2082/2082875.png" alt="" class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
->>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
     <h5 class="hidden mt-4 text-xl font-semibold text-white lg:block">
         {{auth()->user()->name}}
     </h5>

@@ -2,13 +2,8 @@
 
 namespace App\Policies;
 
-<<<<<<< HEAD
-use App\Models\Permission;
-use App\Models\User;
-=======
 use App\Models\User;
 use App\Models\Permission;
->>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PermissionPolicy

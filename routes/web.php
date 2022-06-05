@@ -91,10 +91,12 @@ Route::get('/regAlum', function () {
 })->name('regA');
 Route::post('/registerAlum',[AlumnosController::class, 'create'])
 ->name('alumno.register');
+/*
 Route::get('/alumno', function () {
     return view('alumno.dashboard');
 })->name('alumno.dashboard');
-Route::resource('alumno','App\Http\Controllers\AlumnosController');
+*/
+
 
 
 
@@ -167,5 +169,8 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
         ->name('user.permission_assignment');
 
     Route::resource('user','App\Http\Controllers\UserController');
+});
+Route::group(['middleware'=>['auth'],'as'=>'frontoffice.'],function (){
+    Route::resource('alumno','App\Http\Controllers\AlumnosController');
 });
 

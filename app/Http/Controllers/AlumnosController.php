@@ -57,10 +57,7 @@ class AlumnosController extends Controller
             'email' => $email,
             'password' => $pass
             );
-<<<<<<< HEAD
             $auth = Auth::attempt($credentials);
-=======
-            $auth = Auth::attempt($credentials); 
             $info = [
                 'IP' => $request->getClientIp(),
                 'id_alumno' => $alumno->id_alum,
@@ -68,9 +65,7 @@ class AlumnosController extends Controller
                 'id_usuario' => $user->id,
             ];
             Log::channel('mydailylogs')->info('Registro Alumno: ', $info);
->>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
-
-        return redirect()->route('alumno.dashboard');
+        return redirect()->route('pages.profile.index');
     }
 
     /**

@@ -13,11 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-<<<<<<< HEAD
-        return false;
-=======
         return true;
->>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
     }
 
     /**

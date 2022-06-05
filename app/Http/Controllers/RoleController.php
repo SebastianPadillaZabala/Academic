@@ -9,27 +9,15 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-<<<<<<< HEAD
-    /**
-=======
      /**
->>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-=======
-    
->>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
     public function __construct()
     {
         $this->middleware('role:' . config('app.admin_role'));
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> 0b22223b030ec5aa59d241b716309ddeabcd4103
     public function index()
     {
         $this->authorize('index',Role::class);
