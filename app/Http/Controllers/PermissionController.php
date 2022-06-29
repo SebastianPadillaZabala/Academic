@@ -18,11 +18,12 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /*
+    
     public function __construct()
     {
         $this->middleware('role:' . config('app.admin_role'));
-    }}*/
+    }
+    
     public function index()
     {
         $this->authorize('index',Role::class);
