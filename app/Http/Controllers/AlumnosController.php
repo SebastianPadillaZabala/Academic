@@ -157,9 +157,9 @@ class AlumnosController extends Controller
     public function inscribirCurso(Request $request){
         $date =Carbon::now();
         $date_ini = $date->format('d-m-Y');
-        $date_fin = $date->addYear()->format('d-m-Y');
+        $date_fin = $date->addYear();
         DB::table('cursos_alumnos')->insert([
-            'fecha_inicio'=>$date_ini,
+            'fecha_inicio'=>$date,
             'fecha_fin'=>$date_fin,
             'estado'=>'activo',
             'progreso'=>1,
