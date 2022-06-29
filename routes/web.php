@@ -26,8 +26,10 @@ use Illuminate\Support\Facades\Log;
 Route::get('/log', function () {
     return view('auth.loginE');
 })->name('log');
+
 Route::post('/loggin',[LoginController::class, 'login'])
 ->name('loggin');
+
 
 ////TODO ADMIN
 Route::get('/admin', function () {
@@ -39,8 +41,10 @@ Route::get('/AllCategorias',[CategoriaController::class, 'categoriasTable'])
 ->name('Allcategoriastable');
 Route::post('/ACategoriass',[CategoriaController::class, 'store'])
 ->name('Añadircategorias');
+
 Route::get('/Allprofesores',[ProfesoresController::class, 'profesores'])
 ->name('Allprofesores');
+
 Route::get('/Allalumnos',[AlumnosController::class, 'alumnos'])
 ->name('Allalumnos');
 Route::get('/Allcursos',[CursosController::class, 'cursosAdmin'])
@@ -58,9 +62,15 @@ Route::get('/regProfe', function () {
 })->name('reg');
 Route::post('/registerProfe',[ProfesoresController::class, 'create'])
 ->name('profesor.register');
+
+Route::get('/profesor/{profesor}',[ProfesoresController::class,'show'])
+    ->name('profesor.show');
+
+
 Route::get('/profesor', function () {
     return view('backoffice.pages.profesor.dashboard');
 })->name('profesor.dashboard');
+
 //REGISTRAR CURSO
 Route::get('/regcursp',[CursosController::class, 'index'])
 ->name('regCurso');
@@ -81,9 +91,12 @@ Route::get('/regAlum', function () {
 })->name('regA');
 Route::post('/registerAlum',[AlumnosController::class, 'create'])
 ->name('alumno.register');
+/*
 Route::get('/alumno', function () {
     return view('alumno.dashboard');
 })->name('alumno.dashboard');
+*/
+
 
 
 
@@ -157,3 +170,7 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
 
     Route::resource('user','App\Http\Controllers\UserController');
 });
+Route::group(['middleware'=>['auth'],'as'=>'frontoffice.'],function (){
+    Route::resource('alumno','App\Http\Controllers\AlumnosController');
+});
+

@@ -18,12 +18,14 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        //
+        $alumnos = DB::select('select * from alumnos INNER JOIN users
+        on alumnos.id_user = users.id');
+        return view('frontoffice.pages.profile.index', ['alumnos' => $alumnos]);
     }
 
     public function alumnos(){
         $alumnos = DB::select('select * from alumnos INNER JOIN users
-        on alumnos.id_user = users.id');       
+        on alumnos.id_user = users.id');
         return view('backoffice.pages.admin.tablaAlumnos', ['alumnos' => $alumnos]);
     }
 
@@ -55,7 +57,7 @@ class AlumnosController extends Controller
             'email' => $email,
             'password' => $pass
             );
-            $auth = Auth::attempt($credentials); 
+            $auth = Auth::attempt($credentials);
             $info = [
                 'IP' => $request->getClientIp(),
                 'id_alumno' => $alumno->id_alum,
@@ -63,8 +65,7 @@ class AlumnosController extends Controller
                 'id_usuario' => $user->id,
             ];
             Log::channel('mydailylogs')->info('Registro Alumno: ', $info);
-
-        return redirect()->route('alumno.dashboard');
+        return redirect()->route('pages.profile.index');
     }
 
     /**

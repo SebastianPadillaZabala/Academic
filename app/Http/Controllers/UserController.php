@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Permission;
 use App\Models\User;
@@ -23,7 +24,6 @@ class UserController extends Controller
     }
     public function index()
     {
-        
         $this->authorize('index', User::class);
         return view('backoffice.pages.user.index',[
             'users'=> auth()->user()->all(),

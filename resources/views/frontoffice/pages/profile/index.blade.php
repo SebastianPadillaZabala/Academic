@@ -16,7 +16,7 @@
             </div>
             <div class="form-item">
                 <label class="text-xl ">Nombre completo</label>
-                <input type="text" value="{{}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200" disabled>
+                <input type="text" value="" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200" disabled>
             </div>
             <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
                 <div class="form-item w-full">
@@ -29,12 +29,13 @@
                 </div>
             </div>
             <div>
-                <h3 class="text-2xl font-semibold ">Acerca de mi</h3>
+                <h3 class="text-2xl font-semibold ">Mis cursos</h3>
                 <hr>
             </div>
             <div class="form-item w-full">
-                <label class="text-xl ">Biografia</label>
-                <textarea cols="30" rows="10" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " disabled>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem natus nobis odio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, eveniet fugiat? Explicabo assumenda dignissimos quisquam perspiciatis corporis sint commodi cumque rem tempora!</textarea>
+                <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                    <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
+                </div>
             </div>
             <div>
                 <h3 class="text-2xl font-semibold">Mis redes sociales</h3>

@@ -17,8 +17,7 @@
       </svg>
     </span>
     </button>
-    <ul
-        class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-400 ease-in-out origin-top min-w-32">
+    <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-400 ease-in-out origin-top min-w-32">
         @yield('dropdown')
     </ul>
 </div>
