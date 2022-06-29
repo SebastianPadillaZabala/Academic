@@ -27,7 +27,7 @@
 @endsection
 @section('suscripcion')
     <li>
-        <div class="text-teal-600">Fecha de Registro </div>
+        <div class="text-indigo-600">Fecha de Registro </div>
         <div class="text-gray-500 text-xs">{{$profesor->created_at}}</div>
     </li>
 @endsection
@@ -38,7 +38,7 @@
         <!-- About Section -->
         <div class="bg-white p-3 shadow-sm rounded-sm">
             <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-                        <span class="text-green-500">
+                        <span class="text-indigo-500">
                             <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -60,7 +60,7 @@
                     <div class="grid grid-cols-2">
                         <div class="px-4 py-2 font-semibold">Correo.</div>
                         <div class="px-4 py-2">
-                            <a class="text-blue-800" href="mailto:jane@example.com">{{$profesor->email}}</a>
+                            <a class="text-blue-800 font-semibold" href="mailto:jane@example.com">{{$profesor->email}}</a>
                         </div>
                     </div>
 

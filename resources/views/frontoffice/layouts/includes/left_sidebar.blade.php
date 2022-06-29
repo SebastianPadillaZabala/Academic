@@ -1,6 +1,6 @@
 <div class="w-full md:w-3/12 md:mx-2">
     <!-- Profile Card -->
-    <div class="bg-white p-3 border-t-4 border-green-400">
+    <div class="bg-white p-3 border-t-4 border-indigo-400">
         @yield('profile_data')
         <ul
             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
