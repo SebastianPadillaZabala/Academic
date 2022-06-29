@@ -17,7 +17,7 @@
    </ul>
  </div>
  <div class="text-gray-700 col-span-2">
-    <iframe width="850" height="450" src="" title="YouTube video player" frameborder="0" 
+    <iframe width="850" height="450" src="https://www.youtube.com/embed/OiXS2JBVbf0?autoplay=1&mute=1" title="YouTube video player" frameborder="0" 
      allowfullscreen></iframe>
      <h2 class="text-4xl">Iniciamos!</h2>
      <p>descripcion</p>
