@@ -164,9 +164,7 @@ class AlumnosController extends Controller
             'estado'=>'activo',
             'progreso'=>1,
             'curso_id'=>$request->input('curso_id'),
-            'alumno_id'=>$request->input('alumno_id'),
-            'created_at'=>Carbon::now('America/La_Paz'),
-            'updated_at'=>Carbon::now('America/La_Paz')
+            'alumno_id'=>$request->input('alumno_id')
         ]);
         return redirect()->back();
     }
