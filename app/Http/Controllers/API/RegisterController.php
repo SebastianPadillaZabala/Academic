@@ -71,16 +71,19 @@ class RegisterController extends BaseController
 
     public function logout(Request $request)
     {
-        $token = $request->user()->token();
+        $token = $request->token();
         $token->revoke();
-        $response = ["message" => "You have successfully logout"];
+        $response = ["message" => "Has cerrado sesion"];
 
         return response($response, 200);
+
     }
 
     public function user() {
-        $user = auth('api')->user();
-        return $user;
+        $response = [
+            'user' => auth()->user(),
+        ];
+        return response($response, 200);
     }
 
 }

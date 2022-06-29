@@ -28,3 +28,19 @@ Route::middleware('auth:api')
 Route::middleware('auth:api')
     ->get('user', [App\Http\Controllers\API\RegisterController::class, 'user']);
 
+
+//Cursos
+
+Route::get('cursos',[App\Http\Controllers\API\Cursos_Controller::class,'index']);
+
+//Clases_x_Curso
+
+Route::get('clases/{id_curso}/{id_user}',[App\Http\Controllers\API\Clases_Controller::class,'get_clases']);
+
+//1 sola clase
+Route::get('clases/1clase/{id}',[App\Http\Controllers\API\Clases_Controller::class,'get_x_clase']);
+
+//mis cursos
+Route::post('crear_mis_cursos',[App\Http\Controllers\API\Miscursos_Controller::class,'mis_cursos']);
+//ver mis cursos
+Route::get('mis_cursos/{id_user}',[App\Http\Controllers\API\Miscursos_Controller::class,'get_mis_cursos']);

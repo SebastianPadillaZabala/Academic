@@ -16,4 +16,13 @@ class Clase extends Model
 
     static public $atributos = ['Titulo', 'Url', 'Nro_clase', 'descripcion', 'tiempo'];
 
+    ///carol obtengo las clases por curso
+    public function getByCursos($value) {
+        return $this->where(['id' => $value])->get();
+    }
+
+    public function getByClase($value) {
+        return $this->where(['id_clase' => $value])->get();
+    }
+
 }

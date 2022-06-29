@@ -15,5 +15,10 @@ class Curso extends Model
     protected $primaryKey = 'id_curso';
 
     static public $atributos = ['nombreCurso', 'image', 'descripcion', 'cantidad_clases', 'estado', 'fecha'];
+
+    ///Carol todos los cursos
+    public function getAllCursos() {
+        return $this->orderBy('id', 'desc')->get();
+    }
     
 }
