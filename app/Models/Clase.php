@@ -18,7 +18,7 @@ class Clase extends Model
 
     ///carol obtengo las clases por curso
     public function getByCursos($value) {
-        return $this->where(['id_clase' => $value])->get();
+        return $this->where(['id_curso' => $value])->get();
     }
 
     public function getByClase($value) {

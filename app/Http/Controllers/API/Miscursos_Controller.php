@@ -23,9 +23,9 @@ class Miscursos_Controller extends Controller
         $date=Carbon::now();
         $date_ini=$date->format(format:'d-m-Y');
         $date_fin=$date->addYear()->format(format:'d-m-Y');
-        $alumno = DB::table('alumnos')->where('user_id',$id_user)->get();
+        $alumno = DB::table('alumnos')->where('id_user',$id_user)->get();
         foreach($alumno as $id_alumno){
-            $id=$id_alumno->id;
+           $id=$id_alumno->id_alum;
         }
         $mis_cursos= DB::table('cursos_alumnos')->where('alumno_id',$id and 'curso_id',$curso_id)->get();
         $nulo=DB::table('cursos_alumnos')->count();
@@ -56,21 +56,21 @@ class Miscursos_Controller extends Controller
 
     public function get_mis_cursos($id_user)
     {  
-        $alumno = DB::table('alumnos')->where('user_id',$id_user)->get();
+        $alumno = DB::table('alumnos')->where('id_user',$id_user)->get();
         $cursos1=[];
       
         foreach($alumno as $id_alumno){
-          $id=$id_alumno->id;
+            $id=$id_alumno->id_alum;
           $mis_cursos=DB::table('cursos_alumnos')->where('alumno_id',$id)->get();
           if($mis_cursos){
             foreach($mis_cursos as $id_curso){
             $idc=$id_curso->curso_id;
-            $mis_cursos1=DB::table('cursos')->where('id',$idc)->get();
+            $mis_cursos1=DB::table('cursos')->where('id_curso',$idc)->get();
                 foreach($mis_cursos1 as $item){
                     // $item['descripcion'] = strip_tags($item['descripcion']);
                      //$item['descripcion']=$Content = preg_replace("/&#?[a-z0-9]+;/i"," ",$item['descripcion']);
                      $curso1 = new \stdClass();
-                     $curso1->id=$item->id;
+                     $curso1->id=$item->id_curso;
                      $curso1->nombreCurso = $item->nombreCurso;
                      $curso1->image = $item->image;
                      $curso1->descripcion = $item->descripcion;
