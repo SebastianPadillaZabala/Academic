@@ -28,7 +28,7 @@ class AlumnosController extends Controller
            if($alumno == null){
             $alumno = DB::select('SELECT * FROM alumnos, users where alumnos.id_user=users.id and users.id = '. $id);
            }*/
-           $curso = DB::select('SELECT * FROM  cursos_alumnos, cursos, alumnos, users
+           $curso = DB::select('SELECT * FROM  cursos_alumnos, cursos, alumnos
            where cursos.id_curso=cursos_alumnos.curso_id and  alumnos.id_alum=cursos_alumnos.alumno_id and alumnos.id_user = '. $id
            
            );
