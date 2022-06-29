@@ -18,7 +18,7 @@ class Curso extends Model
 
     ///Carol todos los cursos
     public function getAllCursos() {
-        return $this->orderBy('id', 'desc')->get();
+        return $this->orderBy('id_curso', 'desc')->get();
     }
     
 }

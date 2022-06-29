@@ -34,7 +34,7 @@ class Clases_Controller extends Controller
            $clase_list->Nro_clase=$item->Nro_clase;
            $clase_list->descripcion=$item->descripcion;
            $clase_list->tiempo=$item->tiempo;
-           $clase_list->id=$item->id;
+           $clase_list->id=$item->id_curso;
            array_push($clases, $clase_list);
         }
           return response()->json($clases);

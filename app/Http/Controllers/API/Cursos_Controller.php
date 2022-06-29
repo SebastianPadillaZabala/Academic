@@ -18,7 +18,7 @@ class Cursos_Controller extends Controller
          $item['descripcion']=$Content = preg_replace("/&#?[a-z0-9]+;/i"," ",$item['descripcion']);
          
          $curso = new \stdClass();
-         $curso->id=$item->id;
+         $curso->id=$item->id_curso;
          $curso->nombreCurso = $item->nombreCurso;
          $curso->image = $item->image;
          $curso->descripcion = $item->descripcion;
