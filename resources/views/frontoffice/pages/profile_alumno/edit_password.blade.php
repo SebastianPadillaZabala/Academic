@@ -2,7 +2,7 @@
 @section('profile_data')
     <div class="image overflow-hidden">
         <img class="h-auto w-full mx-auto"
-             src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+             src="https://previews.123rf.com/images/hvostik/hvostik1607/hvostik160700078/61014335-estudiante-graduado-avatar-estudiante-icono-del-estudiante-estilo-de-dise%C3%B1o-plano-graduaci%C3%B3n-de-educ.jpg""
              alt="">
     </div>
     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{auth()->user()->name}}</h1>
