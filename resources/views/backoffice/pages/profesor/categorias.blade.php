@@ -18,7 +18,7 @@
         <span class="hidden text-white lg:block">{{auth()->user()->tipo}}</span>
     @endsection
     <main class="h-screen w-full">
-<div class="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+<div class="ml-auto">
     <div class="sticky z-10 top-0 h-16 border-b lg:py-0">
         <div class="px-2 flex items-center justify-between space-x-4 2xl:container">
             <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">Categorias</h5>

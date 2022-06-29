@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Permission;
 use App\Models\User;
 use App\Models\Role;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,6 +27,7 @@ class UserController extends Controller
     }
     public function index()
     {
+
         $this->authorize('index', User::class);
         return view('backoffice.pages.user.index',[
             'users'=> auth()->user()->all(),
@@ -99,9 +103,20 @@ class UserController extends Controller
     public function destroy($user)
     {
         $this->authorize('delete', $user);
+        $userAnt = $user;
         $user->delete();
+
+        $user = Auth::user();
+        $info = [
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'antiguo registro' => $userAnt,
+        ];
+        Log::channel('mydailylogs')->info('Eliminar Usuario: ', $info);
+
         return redirect()->route('backoffice.user.index');
     }
+
     public function assign_role(User $user){
         $this->authorize('assign_role', $user);
         return view('backoffice.pages.user.assign_role',[
@@ -109,12 +124,14 @@ class UserController extends Controller
             'roles'=>Role::all()
         ]);
     }
+
     public function role_assignment(Request $request,User $user){
         $this->authorize('assign_role', $user);
         $user->role_assignment($request);
         return redirect()->route('backoffice.user.show',$user);
 
     }
+
     public function assign_permission(User $user){
         $this->authorize('assign_permission', $user);
         return view('backoffice.pages.user.assign_permission',[
@@ -122,9 +139,11 @@ class UserController extends Controller
             'roles' => $user->roles
         ]);
     }
+
     public function permission_assignment(Request $request, User $user){
         $this->authorize('assign_permission', $user);
         $user->permissions()->sync($request->permissions);
         return redirect()->route('backoffice.user.show',$user);
     }
+
 }

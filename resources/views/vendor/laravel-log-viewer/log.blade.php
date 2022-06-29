@@ -68,7 +68,10 @@
     }
     .list-group {
             padding: 5px;
-    }
+        }
+
+
+
 
     /**
     * DARK MODE CSS
@@ -170,7 +173,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col sidebar mb-3">
-      <h1><i class="fa fa-calendar" aria-hidden="true"></i> Log Viewer</h1>
+      <h1><i class="fa fa-calendar" aria-hidden="true"></i> Laravel Log Viewer</h1>
+
 
       <div class="custom-control custom-switch" style="padding-bottom:20px;">
         <input type="checkbox" class="custom-control-input" id="darkSwitch">
@@ -205,7 +209,7 @@
           <tr>
             @if ($standardFormat)
               <th>Level</th>
-              <th>Context</th>
+
               <th>Date</th>
             @else
               <th>Line number</th>
@@ -221,7 +225,7 @@
                 <td class="nowrap text-{{{$log['level_class']}}}">
                   <span class="fa fa-{{{$log['level_img']}}}" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
                 </td>
-                <td class="text">{{$log['context']}}</td>
+
               @endif
               <td class="date">{{{$log['date']}}}</td>
               <td class="text">
@@ -248,7 +252,6 @@
           </tbody>
         </table>
       @endif
-
     </div>
   </div>
 </div>

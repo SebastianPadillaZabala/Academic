@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Permission;
 use App\Http\Requests\Permission\StoreRequest;
 use App\Http\Requests\Permission\UpdateRequest;
 use App\Models\Role;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PermissionController extends Controller
 {
@@ -16,10 +18,11 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*
     public function __construct()
     {
         $this->middleware('role:' . config('app.admin_role'));
-    }
+    }}*/
     public function index()
     {
         $this->authorize('index',Role::class);
@@ -49,8 +52,17 @@ class PermissionController extends Controller
      */
     public function store(StoreRequest $request, Permission $permission)
     {
-
         $permission = $permission->store($request);
+
+        $user = Auth::user();
+        $info = [
+            'IP' => $request->getClientIp(),
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'nuevo registro' => $permission,
+        ];
+        Log::channel('mydailylogs')->info('Crear Permiso: ', $info);
+
         return redirect()->route('backoffice.permission.show',$permission);
     }
 
@@ -105,7 +117,17 @@ class PermissionController extends Controller
     {
         $this->authorize('delete', $permission);
         $role = $permission->role;
+        $permissionAnt = $permission;
         $permission->delete();
+
+        $user = Auth::user();
+        $info = [
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'antiguo registro' => $permissionAnt,
+        ];
+        Log::channel('mydailylogs')->info('Eliminar Permiso: ', $info);
+
         return redirect()->route('backoffice.role.show',$role);
     }
 }

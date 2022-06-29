@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Categoria;
 
+use Illuminate\Support\Facades\Log;
+
 class CategoriaController extends Controller
 {
     /**
@@ -40,6 +42,16 @@ class CategoriaController extends Controller
         $categoria->nombreCategoria = $request->input('nombre');
         $categoria->descripcion = $request->input('descripcion');
         $categoria->save();
+
+        $user = Auth::user();
+        $info = [
+            'IP' => $request->getClientIp(),
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'nuevo registro' => $categoria,
+        ];
+        Log::channel('mydailylogs')->info('Crear Categoria: ', $info);
+
 
         return redirect()->route('Allcategoriastable');
     }
@@ -93,9 +105,9 @@ class CategoriaController extends Controller
         $categorias = Categoria::all();
         if(auth()->user()){
         if(auth()->user()->tipo == 'Alumno'){
-            return view('alumno.categorias',['categorias' => $categorias]);
-        
-        }else{ 
+            return view('layouts.categorias',['categorias' => $categorias]);
+
+        }else{
             if(auth()->user()->tipo == 'Admin'){
                 return view('backoffice.pages.admin.tablaCategorias',['categorias' => $categorias]);
             }

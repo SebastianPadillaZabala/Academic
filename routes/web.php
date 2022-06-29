@@ -9,8 +9,11 @@ use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\PlanesController;
 use App\Http\Controllers\ClasesController;
+use App\Http\Controllers\examenesController;
+use App\Http\Controllers\preguntasController;
 use App\Http\Livewire\ListaCurso;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SuscripcionController;
 use Illuminate\Support\Facades\Log;
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +29,8 @@ use Illuminate\Support\Facades\Log;
 Route::get('/log', function () {
     return view('auth.loginE');
 })->name('log');
-
 Route::post('/loggin',[LoginController::class, 'login'])
 ->name('loggin');
-
 
 ////TODO ADMIN
 Route::get('/admin', function () {
@@ -41,10 +42,8 @@ Route::get('/AllCategorias',[CategoriaController::class, 'categoriasTable'])
 ->name('Allcategoriastable');
 Route::post('/ACategoriass',[CategoriaController::class, 'store'])
 ->name('Añadircategorias');
-
 Route::get('/Allprofesores',[ProfesoresController::class, 'profesores'])
 ->name('Allprofesores');
-
 Route::get('/Allalumnos',[AlumnosController::class, 'alumnos'])
 ->name('Allalumnos');
 Route::get('/Allcursos',[CursosController::class, 'cursosAdmin'])
@@ -62,11 +61,6 @@ Route::get('/regProfe', function () {
 })->name('reg');
 Route::post('/registerProfe',[ProfesoresController::class, 'create'])
 ->name('profesor.register');
-
-Route::get('/profesor/{profesor}',[ProfesoresController::class,'show'])
-    ->name('profesor.show');
-
-
 Route::get('/profesor', function () {
     return view('backoffice.pages.profesor.dashboard');
 })->name('profesor.dashboard');
@@ -91,15 +85,14 @@ Route::get('/regAlum', function () {
 })->name('regA');
 Route::post('/registerAlum',[AlumnosController::class, 'create'])
 ->name('alumno.register');
-/*
 Route::get('/alumno', function () {
     return view('alumno.dashboard');
 })->name('alumno.dashboard');
-*/
 
 
-
-
+Route::get('/modal', function () {
+    return view('modal');
+})->name('#');
 
 Route::get('/Categorias',[CategoriaController::class, 'categorias'])
 ->name('categorias');
@@ -114,13 +107,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-
-
-
-Route::get('/video', function () {
-    return view('video.reproductor');
-})->name('video');
-
 /////PLANES
 Route::get('/planes',[PlanesController::class, 'index'])
 ->name('planes');
@@ -131,30 +117,57 @@ Route::get('/Addplan',[PlanesController::class, 'create'])
 Route::post('/Rplan',[PlanesController::class, 'store'])
 ->name('Rplan');
 
+///Reproduccion de clases y clases
 Route::get('/prueba/{cat}', [CursosController::class, 'livewire'])
 ->name('prueba');
-
-Route::get('/equipo', function () {
-    return view('grupo');
-})->name('grupo');
-
-Route::get('/redirect',[LoginController::class, 'index'])
-->name('re');
 
 Route::get('/clase/{id}',[ClasesController::class, 'redirect'])
 ->name('clase');
 
+Route::get('/video', function () {
+    return view('video.reproductor');
+})->name('video');
+
 Route::get('/curso/clase/{id}',[ClasesController::class, 'redirectClase'])
 ->name('claseR');
 
-Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+Route::get('/video', function () {
+    return view('video.reproductor');
+})->name('video');
 
+///EQUIPO-SOBRE NOSOTROS
+Route::get('/equipo', function () {
+    return view('grupo');
+})->name('grupo');
+
+///Pagos-Suscripcion
+Route::get('/check-out/{id}', [PlanesController::class, 'pagos'])
+->name('check-out',);
+Route::post('/checkout/{id}',[SuscripcionController::class, 'store'])
+->name('checkout-input');
+
+///Otros
+Route::get('/redirect',[LoginController::class, 'index'])
+->name('re');
+
+///Bitacora
+Route::get('/private00', function () {
+    return view('backoffice.pages.admin.passwordbitacora');
+})->name('logBit');
+
+Route::post('/private0101',[LoginController::class, 'loginBitacora'])
+->name('logBitacora');
+
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('bitacora');
+
+//Reportes
 Route::get('/reportes',function () {
     return view('backoffice.layouts.reporte');
 })->name('reporte');
 Route::post('/reportes',[ReportesController::class, 'validar'])->name('reporte.validar');
 Route::get('/reportePDF',[ReportesController::class, 'index'])->name('reporte.index');
 
+//ROLES
 Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
     Route::resource('role','App\Http\Controllers\RoleController');
     Route::get('user/{user}/assign_role','App\Http\Controllers\UserController@assign_role')
@@ -170,7 +183,24 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
 
     Route::resource('user','App\Http\Controllers\UserController');
 });
-Route::group(['middleware'=>['auth'],'as'=>'frontoffice.'],function (){
-    Route::resource('alumno','App\Http\Controllers\AlumnosController');
-});
+//todo frontoffice
+    Route::group(['middleware'=>['auth'],'as'=>'frontoffice.'],function (){
+        Route::resource('alumno','App\Http\Controllers\AlumnosController');
+        Route::get('profile_alumno/edit_password','App\Http\Controllers\AlumnosController@edit_password')->name('alumno.edit_password');
+        Route::put('profile_alumno/change_password','App\Http\Controllers\AlumnosController@change_password')->name('alumno.change_password');
+        Route::post('alumno/inscribir_curso','App\Http\Controllers\AlumnosController@inscribirCurso')->name('alumno.inscribir_curso');
+        Route::get('avanzar','App\Http\Controllers\AlumnosController@avanzar')->name('alumnos.avanzar');
 
+        Route::resource('profesor','App\Http\Controllers\ProfesoresController');
+        Route::get('profile_profesor/edit_password','App\Http\Controllers\ProfesoresController@edit_password')->name('profesor.edit_password');
+        Route::put('profile_profesor/change_password','App\Http\Controllers\ProfesoresController@change_password')->name('profesor.change_password');
+    });
+
+    Route::get('/examenes',[examenesController::class, 'index'])
+    ->name('examen.crear');
+    Route::post('/examenes',[examenesController::class, 'create'])
+    ->name('examen.registrar');
+    Route::get('/preguntas',[preguntasController::class, 'index'])
+    ->name('preguntas.index');
+    Route::post('/preguntas',[preguntasController::class, 'create'])
+    ->name('pregunta.registrar');

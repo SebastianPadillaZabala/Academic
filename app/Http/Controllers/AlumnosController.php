@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\User\ChangePasswordRequest;
 use App\Models\Alumno;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 
 class AlumnosController extends Controller
 {
@@ -18,9 +22,16 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        $alumnos = DB::select('select * from alumnos INNER JOIN users
-        on alumnos.id_user = users.id');
-        return view('frontoffice.pages.profile.index', ['alumnos' => $alumnos]);
+            $id = Auth()->user()->id;
+            $alumno = DB::select('SELECT * FROM alumnos, users where alumnos.id_user=users.id and users.id = '. $id);
+            $curso = DB::select('SELECT * FROM  cursos_alumnos, cursos, alumnos
+                          where cursos.id_curso=cursos_alumnos.curso_id and  alumnos.id_alum=cursos_alumnos.alumno_id and alumnos.id_user = '. $id);
+
+            return view('frontoffice.pages.profile_alumno.index',[
+                'alumno'=> $alumno[0],
+                'cursos'=>$curso,
+            ]);
+
     }
 
     public function alumnos(){
@@ -48,7 +59,8 @@ class AlumnosController extends Controller
         $alumno = new Alumno();
         $alumno->cantidad_cursos = 0;
         $alumno->suscripcion = 'ninguna';
-        $alumno->id_user = DB::table('users')->max('id');
+    //    $alumno->id_user = DB::table('users')->max('id');
+        $alumno->id_user = $user->id;
         $alumno->save();
 
         $email = $request->input('email');
@@ -58,14 +70,17 @@ class AlumnosController extends Controller
             'password' => $pass
             );
             $auth = Auth::attempt($credentials);
-            $info = [
-                'IP' => $request->getClientIp(),
-                'id_alumno' => $alumno->id_alum,
-                'email' => $user->email,
-                'id_usuario' => $user->id,
-            ];
-            Log::channel('mydailylogs')->info('Registro Alumno: ', $info);
-        return redirect()->route('pages.profile.index');
+
+        $info = [
+            'IP' => $request->getClientIp(),
+            'id usuario' => $user->id,
+            'email' => $user->email,
+            'tipo usuario' => $user->tipo,
+            'nuevo registro' => $alumno,
+        ];
+        Log::channel('mydailylogs')->info('Crear Usuario Alumno: ', $info);
+
+        return redirect()->route('frontoffice.alumno.index');
     }
 
     /**
@@ -98,7 +113,7 @@ class AlumnosController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('frontoffice.pages.profile_alumno.edit');
     }
 
     /**
@@ -110,7 +125,15 @@ class AlumnosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('users')
+            ->where('id','=',$id)
+            ->update([
+                'name'=>$request->input('name'),
+                'apellido'=>$request->input('apellido'),
+                'celular'=>$request->input('celular'),
+                'email'=>$request->input('email'),
+            ]);
+        return redirect()->route('frontoffice.alumno.index');
     }
 
     /**
@@ -122,5 +145,37 @@ class AlumnosController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function edit_password(){
+        return view('frontoffice.pages.profile_alumno.edit_password');
+    }
+    public function change_password(ChangePasswordRequest $request){
+        $request->user()->password = Hash::make($request->password);
+        $request->user()->save();
+        return redirect()->back();
+    }
+    public function inscribirCurso(Request $request){
+        $date =Carbon::now();
+        $date_ini = $date->format('d-m-Y');
+        $date_fin = $date->addYear()->format('d-m-Y');
+        DB::table('cursos_alumnos')->insert([
+            'fecha_inicio'=>$date_ini,
+            'fecha_fin'=>$date_fin,
+            'estado'=>'activo',
+            'progreso'=>1,
+            'curso_id'=>$request->input('curso_id'),
+            'alumno_id'=>$request->input('alumno_id'),
+            'created_at'=>Carbon::now('America/La_Paz'),
+            'updated_at'=>Carbon::now('America/La_Paz')
+        ]);
+        return redirect()->back();
+    }
+    public function avanzar($id){
+        DB::table('cursos_alumnos')
+            ->where('id','=',$id)
+            ->update([
+                'progreso'=>10,
+            ]);
+        return redirect()->route('frontoffice.alumno.index');
     }
 }

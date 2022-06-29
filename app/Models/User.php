@@ -6,9 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+//use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -53,7 +55,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    static public $atributos = ['name','email','apellido','celular','tipo',];
+    static public $atributos = ['name','email','apellido','celular','tipo'];
     /**
      * The accessors to append to the model's array form.
      *
@@ -99,5 +101,18 @@ class User extends Authenticatable
             }
         }
         return $flag;
+    }
+    //asinacion de roles y permisos
+    public function has_curso($idc){
+        $flag=false;
+        $id = Auth()->user()->id;
+        $curso = DB::select('SELECT id_curso FROM  cursos_alumnos, cursos, alumnos
+                      where cursos.id_curso=cursos_alumnos.curso_id and  alumnos.id_alum=cursos_alumnos.alumno_id
+                        and alumnos.id_user = '. $id);
+        foreach ($curso as $c){
+            if ($c->id_curso == $idc)
+                return true;
+        }
+        return false;
     }
 }

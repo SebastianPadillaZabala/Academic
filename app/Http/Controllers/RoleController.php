@@ -7,6 +7,9 @@ use App\Http\Requests\Role\UpdateRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+
 class RoleController extends Controller
 {
      /**
@@ -14,10 +17,12 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
         $this->middleware('role:' . config('app.admin_role'));
     }
+
     public function index()
     {
         $this->authorize('index',Role::class);
@@ -45,8 +50,16 @@ class RoleController extends Controller
      */
     public function store(StoreRequest $request, Role $role)
     {
-
         $role = $role->store($request);
+
+        $user = Auth::user();
+        $info = [
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'nuevo registro' => $role,
+        ];
+        Log::channel('mydailylogs')->info('Crear Rol: ', $info);
+
         return redirect()->route('backoffice.role.show',$role);
     }
 
@@ -88,7 +101,18 @@ class RoleController extends Controller
      */
     public function update(UpdateRequest $request, Role $role)
     {
+        $roleAnt = $role; //aqui no se como hacer para sacar el rol antes de modificar
         $role->my_update($request);
+
+        $user = Auth::user();
+        $info = [
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'antiguo registro' =>$roleAnt,
+            'nuevo registro' => $role,
+        ];
+        Log::channel('mydailylogs')->info('Editar Rol: ', $info);
+
         return redirect()->route('backoffice.role.show',$role);
     }
 
@@ -101,7 +125,17 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $this->authorize('delete',$role);
+        $roleAnt = $role;
         $role->delete();
+
+        $user = Auth::user();
+        $info = [
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'antiguo registro' =>$roleAnt,
+        ];
+        Log::channel('mydailylogs')->info('Eliminar Rol: ', $info);
+
         return redirect()->route('backoffice.role.index');
     }
 }

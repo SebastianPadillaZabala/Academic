@@ -17,10 +17,15 @@
    </ul>
  </div>
  <div class="text-gray-700 col-span-2">
-    <iframe width="850" height="450" src="{{$clase->Url}}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" 
+    <iframe width="850" height="450" src="{{$clase->Url}}?autoplay=1&mute=1" title="YouTube video player" frameborder="0"
      allowfullscreen></iframe>
-     <h2 class="p-2 text-4xl">{{$clase->Titulo}}</h2>
+     <div class="flex flex-row">
+         <h2 class="p-2 text-4xl">{{$clase->Titulo}}</h2>
+         <button class="w-3/12 h-41 mt-3 px-3 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-indigo-600 md:mx-2 md:w-auto justify-content: flex-end">
+             <a href="{{route('frontoffice.alumnos.avanzar')}}">Siguiente</a> </button>
+     </div>
      <p>{{$clase->descripcion}}</p>
+
  </div>
 </div>
 @endsection

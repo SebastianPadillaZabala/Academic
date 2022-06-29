@@ -5,7 +5,7 @@
         @include('backoffice.layouts.includes.head')
     </head>
     <body>
-        <div class="flex bg-gray-200">
+        <div class="flex h-screen w-auto bg-gray-200">
             @include('backoffice.layouts.includes.leftsidebar')
             <div class="flex-1 flex flex-col mx-auto overflow-y-auto">
                 <!-- Start Page Loading -->

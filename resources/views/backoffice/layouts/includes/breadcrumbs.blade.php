@@ -3,5 +3,4 @@
         <li><a href="#" class="text-blue-600 hover:text-blue-700">Home</a></li>
         @yield('breadcrumbs')
     </ol>
-
 </nav>

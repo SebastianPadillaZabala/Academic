@@ -31,7 +31,7 @@ class ApiTokenPermissionsTest extends TestCase
         Livewire::test(ApiTokenManager::class)
                     ->set(['managingPermissionsFor' => $token])
                     ->set(['updateApiTokenForm' => [
-                        'permission' => [
+                        'permissions' => [
                             'delete',
                             'missing-permission',
                         ],

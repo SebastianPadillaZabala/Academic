@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Log;
+
 class CursosController extends Controller
 {
     /**
@@ -26,13 +28,13 @@ class CursosController extends Controller
     public function cursosAdmin(){
         $cursos = DB::select('select * from cursos INNER JOIN categorias
         ON cursos.id_categoria = categorias.id_cat
-        INNER JOIN profesores ON cursos.id_prof = profesores.id_profe 
-        INNER JOIN users ON users.id = profesores.id_user');  
+        INNER JOIN profesores ON cursos.id_prof = profesores.id_profe
+        INNER JOIN users ON users.id = profesores.id_user');
         return view('backoffice.pages.admin.tablaCursos',['cursos'=>$cursos]);
     }
 
     public function AllcursosAdmin(){
-        $cursos = DB::table('cursos')->where('estado', '=', 'Aprobado')->get();   
+        $cursos = DB::table('cursos')->where('estado', '=', 'Aprobado')->get();
         return view('admin.mostrar_cursos',['cursos'=>$cursos]);
     }
 
@@ -53,7 +55,17 @@ class CursosController extends Controller
         $id_profesor = DB::table('profesores')->where('id_user', '=', auth()->user()->id)->value('id_profe');
         $curso->id_prof = $id_profesor;
         $curso->id_categoria = $_POST['select'];
-        $curso->save();                
+        $curso->save();
+
+        $user = Auth::user();
+        $info = [
+            'IP' => $request->getClientIp(),
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'nuevo registro' => $curso,
+        ];
+        Log::channel('mydailylogs')->info('Crear Curso: ', $info);
+
 
         return redirect()->route('profesor.cursos');
     }
@@ -115,7 +127,7 @@ class CursosController extends Controller
     }
 
     public function livewire($cat){
-      return view('prueba', ['cat'=>$cat]);
+       return view('prueba', ['cat'=>$cat]);
     }
 
     public function cursosVal($id){
@@ -124,9 +136,20 @@ class CursosController extends Controller
 
     public function validarCurso($id){
        $curso = Curso::find($id);
+       $cursoAnt = $curso;
        $curso->estado =  $_POST['select'];
        $curso->save();
-      
+
+        $user = Auth::user();
+        $info = [
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'antiguo registro' => $cursoAnt,
+            'nuevo registro' => $curso,
+        ];
+        Log::channel('mydailylogs')->info('Validar Curso: ', $info);
+
+
        return redirect()->route('CursosAdmin');
     }
 }

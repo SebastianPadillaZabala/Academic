@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-indigo-600 rounded-xl">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t1.6435-9/47684574_150316839281300_3201285128550612992_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3VmYEmavXYcAX81vRuf&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT85MihajFS7qf5NgR33JnyLgrrLA8bbKhApexen3wzdrQ&oe=62C68636" alt="">
                         
                         <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Carol Quintana</h1>
                         
@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-indigo-600 rounded-xl">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t39.30808-6/245418499_4690283027703564_7627589068188176869_n.jpg?_nc_cat=103&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=JGoFqfJarnIAX9lt-DS&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT8fwiiaSf0urtOSws6CL3TNOOq0OuCCDIPLTK2Uu8M0XQ&oe=62880022" alt="">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t1.18169-9/27858652_1765681993497030_6065120901168465148_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=174925&_nc_ohc=ziEXBSHSyiYAX_zTDeE&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT_qF-mDQJg8OXfIDqPWAuaaiDNIYIk7PXXvF6rsmQAZjA&oe=62CA0CB6" alt="">
                         
                         <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Sebastian Padilla</h1>
                         
@@ -163,7 +163,7 @@
                     </div>
 
                     <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-indigo-600 rounded-xl">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://images.unsplash.com/photo-1608174386344-80898cec6beb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://scontent.fsrz1-2.fna.fbcdn.net/v/t1.6435-9/108205528_3013800515394324_165227345779306251_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=u23pmKS4Y5gAX97icJI&_nc_ht=scontent.fsrz1-2.fna&oh=00_AT9BdqxpC5nzfcuBT2hDDo3empteZkcolt6kRo67RM3KIQ&oe=62C977B3" alt="">
                         
                         <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Angel Charca</h1>
                         

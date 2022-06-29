@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Plan;
 
+use Illuminate\Support\Facades\Log;
 
 class PlanesController extends Controller
 {
@@ -50,6 +51,16 @@ class PlanesController extends Controller
         $plan->descripcion = $request->input('descripcion');
         $plan->duracion = $request->input('duracion');
         $plan->save();
+
+        $user = Auth::user();
+        $info = [
+            'IP' => $request->getClientIp(),
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+            'nuevo registro' => $plan,
+        ];
+        Log::channel('mydailylogs')->info('Crear Plan: ', $info);
+
 
         return redirect()->route('Tplanes');
     }
@@ -97,5 +108,13 @@ class PlanesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pagos($id){
+        if(auth()->user()){
+        return view('checkout',['id'=>$id]);
+        }else{
+            return redirect()->route('log');
+        }
     }
 }

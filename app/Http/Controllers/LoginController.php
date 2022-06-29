@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Log;
 
-class   LoginController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,8 +25,8 @@ class   LoginController extends Controller
             return redirect()->route('profesor.dashboard');
         }
         if(auth()->user()->tipo == 'Alumno'){
-            dd('true');
-            return redirect()->route('frontoffice.pages.profile.index');
+            return redirect()->route('frontoffice.alumno.index');
+
         }
     }
 
@@ -53,13 +54,14 @@ class   LoginController extends Controller
             $tipo = $user->tipo;
             $info = [
                 'IP' => $request->getClientIp(),
-                'id' => $user->id,
+                'id usuario' => $user->id,
                 'email' => $user->email,
-                'tipo' => $tipo,
+                'tipo usuario' => $tipo,
             ];
             Log::channel('mydailylogs')->info('Inicio de sesion: ', $info);
+
             if ($tipo == 'Alumno') {
-                return view('frontoffice.pages.profile.index');
+                return redirect()->route('frontoffice.alumno.index');
             }else{
                 if($tipo == 'Profesor'){
                     return view('backoffice.pages.profesor.dashboard');
@@ -129,5 +131,25 @@ class   LoginController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function loginBitacora(Request $request){
+       $password = $request->input('password');
+       $secret = 'soporte123';
+
+       if($secret == $password){
+
+        $user = Auth::user();
+        $info = [
+            'IP' => $request->getClientIp(),
+            'id usuario' => $user->id,
+            'tipo usuario' => $user->tipo,
+        ];
+        Log::channel('mydailylogs')->info('Acceso a bitacora: ', $info);
+
+        return redirect()->route('bitacora');
+       }else{
+        return redirect()->route('logBit');
+       }
     }
 }

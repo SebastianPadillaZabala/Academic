@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use App\Models\Profesor;
 use App\Models\User;
@@ -19,7 +20,11 @@ class ProfesoresController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth()->user()->id;
+        $profesor = DB::select('SELECT * FROM profesores, users where profesores.id_user=users.id and users.id = '. $id);
+        return view('frontoffice.pages.profile_profesor.index',[
+            'profesor'=> $profesor[0]
+        ]);
     }
 
     /**
@@ -51,13 +56,16 @@ class ProfesoresController extends Controller
             'password' => $pass
             );
             $auth = Auth::attempt($credentials);
-            $info = [
-                'IP' => $request->getClientIp(),
-                'id_profesor' => $profesor->id_profe,
-                'email' => $user->email,
-                'id_usuario' => $user->id,
-            ];
-            Log::channel('mydailylogs')->info('Registro Profesor: ', $info);
+
+        $info = [
+            'IP' => $request->getClientIp(),
+            'id usuario' => $user->id,
+            'email' => $user->email,
+            'tipo usuario' => $user->tipo,
+            'nuevo registro' => $profesor,
+        ];
+        Log::channel('mydailylogs')->info('Crear Usuario Profesor: ', $info);
+
             return view('backoffice.pages.profesor.dashboard');
     }
 
@@ -80,13 +88,7 @@ class ProfesoresController extends Controller
      */
     public function show($id)
     {
-        $profesor =  DB::table('profesores')
-            ->where('id_profe','=',$id)
-            ->select('profesores.*')
-            ->first();
-        return view('backoffice.pages.profesor.show',[
-            'profesor'=>$profesor,
-        ]);
+        //
     }
 
     public function obtener_cursos(){
@@ -109,7 +111,7 @@ class ProfesoresController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('frontoffice.pages.profile_profesor.edit');
     }
 
     /**
@@ -121,7 +123,15 @@ class ProfesoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('users')
+            ->where('id','=',$id)
+            ->update([
+                'name'=>$request->input('name'),
+                'apellido'=>$request->input('apellido'),
+                'celular'=>$request->input('celular'),
+                'email'=>$request->input('email'),
+            ]);
+        return redirect()->route('frontoffice.profesor.index');
     }
 
     /**
@@ -133,5 +143,13 @@ class ProfesoresController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function edit_password(){
+        return view('frontoffice.pages.profile_profesor.edit_password');
+    }
+    public function change_password(ChangePasswordRequest $request){
+        $request->user()->password = Hash::make($request->password);
+        $request->user()->save();
+        return redirect()->back();
     }
 }

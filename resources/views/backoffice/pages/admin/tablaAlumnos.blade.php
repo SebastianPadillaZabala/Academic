@@ -4,6 +4,7 @@
 @endsection
 @section('header')
 <h5 hidden class="text-2xl text-white font-medium lg:block">Bienvenido Administrador</h5>
+
 @endsection
 @section('breadcrumbs')
 
@@ -22,11 +23,6 @@
 <div class="sticky z-10 top-0 h-16 border-b lg:py-0">
         <div class="px-2 py-2 flex items-center justify-between space-x-6 2xl:container">
             <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">Alumnos</h5>
-            <button class="w-12 h-16 -mr-2 border-r lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
         </div>
    <!-- component -->
 <table class="min-w-full border-collapse block md:table">

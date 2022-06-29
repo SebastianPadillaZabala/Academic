@@ -23,6 +23,8 @@ use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
+use Illuminate\Support\Facades\Log;
+
 class ReportesController extends Controller
 {
     //
@@ -54,22 +56,22 @@ class ReportesController extends Controller
             case 'users':
                 return User::$atributos;
                 break;
-            case 'clientes':
+            case 'alumnos':
                 return Alumno::$atributos;
                 break;
-            case 'proveedors':
+            case 'profesores':
                 return Profesor::$atributos;
                 break;
-            case 'productos':
+            case 'cursos':
                 return Curso::$atributos;
                 break;
-            case 'materia_primas':
+            case 'clases':
                 return Clase::$atributos;
                 break;
-            case 'maquinarias':
+            case 'categoria':
                 return Categoria::$atributos;
                 break;
-            case 'distribuidors':
+            case 'planes':
                 return Plan::$atributos;
                 break;
             default:
@@ -111,7 +113,7 @@ class ReportesController extends Controller
         //return view('admin.reporte',['query' => $query, 'datos' => $datos);
     }
 
-    
+
 
     public function otros($datos)
     {

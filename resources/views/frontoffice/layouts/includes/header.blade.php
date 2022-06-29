@@ -1,5 +1,4 @@
-<div>
-    <nav class=" w-full py-0 bg-gray-900 shadow fixed z-10 dark:bg-gray-800">
+<nav class=" w-full py-0 bg-gray-900 shadow fixed z-10 dark:bg-gray-800 ">
         <div class="container px-6 py-3 mx-auto">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex items-center justify-between">
@@ -72,4 +71,4 @@
         </div>
         @endif
     </nav>
-</div>
+
