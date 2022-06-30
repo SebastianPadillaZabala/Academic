@@ -7,6 +7,9 @@ use App\Models\Alumno;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use function PHPUnit\Framework\isEmpty;
+
 //use Validator;
 
 class RegisterController extends BaseController
@@ -82,6 +85,41 @@ class RegisterController extends BaseController
     public function user() {
         $response = [
             'user' => auth()->user(),
+        ];
+        return response($response, 200);
+    }
+
+
+
+    public function userUpdate(Request $request) {
+
+        /** @var \App\Models\MyUserModel $user **/
+        $user = Auth::user();
+        if($user->email == $request->email){
+            $atributos = $request->validate([
+                'name' => 'required|string',
+                'apellido' => 'string|nullable',
+                'celular' => 'string|nullable',
+            ]);
+            $user->update([
+                'name' => $atributos['name'],
+                'apellido' => $atributos['apellido'],
+                'celular' => $atributos['celular'],
+            ]);
+
+        }else{
+            $request->validate([
+                'name' => 'required|string',
+                'apellido' => 'string|nullable',
+                'email' => 'required|email|unique:users,email',
+                'celular' => 'string|nullable',
+            ]);
+            $user->update($request->all());
+        }
+
+        $response = [
+            'message' => 'Usuario actualizado',
+            'user' => $user,
         ];
         return response($response, 200);
     }

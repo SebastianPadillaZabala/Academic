@@ -28,6 +28,8 @@ Route::middleware('auth:api')
 Route::middleware('auth:api')
     ->get('user', [App\Http\Controllers\API\RegisterController::class, 'user']);
 
+Route::middleware('auth:api')
+    ->put('user', [App\Http\Controllers\API\RegisterController::class, 'userUpdate']);
 
 //Cursos
 
