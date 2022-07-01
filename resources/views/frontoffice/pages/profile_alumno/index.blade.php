@@ -26,16 +26,16 @@
         </li>
 @endsection
 @section('suscripcion')
-
+@if($alumno->x == true)
     <li>
         <div class="text-indigo-600">Fecha de inicio suscripcion</div>
-        <div class="text-gray-500 text-xs">----------</div>
+        <div class="text-gray-500 text-xs">{{$alumno->fecha_inicio}}</div>
     </li>
     <li>
         <div class="text-indigo-600">Fecha fin suscripcion</div>
-        <div class="text-gray-500 text-xs">---------</div>
+        <div class="text-gray-500 text-xs">{{$alumno->fecha_final}}</div>
     </li>
-    
+    @endif
 @endsection
 @section('content')
     <div
