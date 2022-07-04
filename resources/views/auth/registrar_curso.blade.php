@@ -8,7 +8,7 @@
                 <div class="flex flex-col flex-1 justify-center mb-8">
                     <h1 class="text-4xl text-center font-thin">Registra el Curso</h1>
                     <div class="w-full mt-4">
-                        <form class="form-horizontal w-3/4 mx-auto" method="POST" action="{{ route('curso.register') }}">
+                        <form class="form-horizontal w-3/4 mx-auto" method="POST" action="{{ route('curso.register') }}" enctype="multipart/form-data">
                            @csrf
                             <div class="flex flex-col mt-4">
                                 <input id="name" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="name" value="" placeholder="Nombre del Curso" required autofocus>

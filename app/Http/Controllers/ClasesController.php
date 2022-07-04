@@ -112,6 +112,7 @@ class ClasesController extends Controller
              ->join('cursos', 'clases.id_curso', '=', 'cursos.id_curso')
              ->select('clases.*', 'cursos.nombreCurso')
              ->where('clases.id_curso', '=', $id_curso)->get();
+             $curso = DB::table('cursos')->where('id_curso', '=', $id_curso)->value('nombreCurso');
 
               return view('prueba2', ['clase_curso'=>$clase_curso]);
            }
