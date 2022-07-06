@@ -103,7 +103,7 @@ class ClasesController extends Controller
         $id_user = auth()->user()->id;
         $fecha_final = DB::table('suscripciones')->where('id_user',$id_user)->max('fecha_final');
         $fecha_actual = Carbon::now();
-           if($fecha_actual > $fecha_final){
+           if($fecha_actual > $fecha_final && Auth::user()->tipo == "Alumno"){
 
              return redirect()->route('planes');
 

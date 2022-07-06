@@ -17,7 +17,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-          //
+        //
     }
 
     /**
@@ -75,7 +75,8 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        return view('layouts.EditCat', ['cat' => $categoria]);
     }
 
     /**
@@ -87,7 +88,12 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->nombreCategoria = $request->input('nombre');
+        $categoria->descripcion = $request->input('descripcion');
+        $categoria->save();
+
+        return redirect()->route('Allcategoriastable');
     }
 
     /**
@@ -101,25 +107,25 @@ class CategoriaController extends Controller
         //
     }
 
-    public function categorias(){
+    public function categorias()
+    {
         $categorias = Categoria::all();
-        if(auth()->user()){
-        if(auth()->user()->tipo == 'Alumno'){
-            return view('layouts.categorias',['categorias' => $categorias]);
-
-        }else{
-            if(auth()->user()->tipo == 'Admin'){
-                return view('backoffice.pages.admin.tablaCategorias',['categorias' => $categorias]);
+        if (auth()->user()) {
+            if (auth()->user()->tipo == 'Alumno') {
+                return view('layouts.categorias', ['categorias' => $categorias]);
+            } else {
+                if (auth()->user()->tipo == 'Admin') {
+                    return view('backoffice.pages.admin.tablaCategorias', ['categorias' => $categorias]);
+                }
+                return view('backoffice.pages.profesor.categorias', ['categorias' => $categorias]);
             }
-            return view('backoffice.pages.profesor.categorias',['categorias' => $categorias]);
-
         }
-      }
-    return view('layouts.categorias', ['categorias' => $categorias]);
+        return view('layouts.categorias', ['categorias' => $categorias]);
     }
 
-    public function categoriasTable(){
+    public function categoriasTable()
+    {
         $categorias = Categoria::all();
-        return view('backoffice.pages.admin.tablaCategorias',['categorias'=>$categorias]);
+        return view('backoffice.pages.admin.tablaCategorias', ['categorias' => $categorias]);
     }
 }
