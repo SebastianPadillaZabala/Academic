@@ -42,6 +42,10 @@ Route::get('/AllCategorias',[CategoriaController::class, 'categoriasTable'])
 ->name('Allcategoriastable');
 Route::post('/ACategoriass',[CategoriaController::class, 'store'])
 ->name('Añadircategorias');
+Route::get('/EditCategorias/{id}',[CategoriaController::class, 'edit'])
+->name('Editcategorias');
+Route::post('/ECat/update/{id}',[CategoriaController::class, 'update'])
+->name('Ecat');
 Route::get('/Allprofesores',[ProfesoresController::class, 'profesores'])
 ->name('Allprofesores');
 Route::get('/Allalumnos',[AlumnosController::class, 'alumnos'])

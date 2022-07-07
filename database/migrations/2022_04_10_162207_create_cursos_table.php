@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('cantidad_clases');
             $table->string('estado'); 
             $table->date('fecha'); 
+            $table->integer('cant_sus');
             $table->unsignedBigInteger('id_prof');
             $table->unsignedBigInteger('id_categoria');
             $table->timestamps();            

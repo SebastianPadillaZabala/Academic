@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('profesores', function (Blueprint $table) {
             $table->id('id_profe');
             $table->string('fecha_nac');
-            $table->string('descripcion');
+            $table->string('cv');
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
 

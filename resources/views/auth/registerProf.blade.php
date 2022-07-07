@@ -9,7 +9,7 @@
                 <div class="flex flex-col flex-1 justify-center mb-8">
                     <h1 class="text-4xl text-center font-thin">Registrate Colega</h1>
                     <div class="w-full mt-4">
-                        <form class="form-horizontal w-3/4 mx-auto" method="POST" action="{{ route('profesor.register') }}">
+                        <form class="form-horizontal w-3/4 mx-auto" method="POST" action="{{ route('profesor.register') }}"enctype="multipart/form-data">
                            @csrf
                            <div class="flex flex-col mt-4">
                                 <input id="name" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="name" value="" placeholder="Nombre" required autofocus>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="flex flex-col mt-2">
                                 <p class="font-semibold text-gray-400">Curriculum Vitae</p>
-                                <input id="descripcion" type="file" class="flex-grow h-8 px-2 border rounded border-grey-400" name="descripcion" value="" placeholder="CV" required autofocus>
+                                <input id="descripcion" type="file" class="flex-grow h-8 px-2 border rounded border-grey-400" name="cv" value="" placeholder="CV" required autofocus>
                             </div>
                             <div class="flex flex-col mt-4">
                                 <input id="email" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="email" value="" placeholder="Email">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden md:block md:w-1/2 rounded-r-lg" style="background: url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80'); background-size: cover; background-position: center center;"></div>
+            <div class="hidden md:block md:w-1/2 rounded-r-lg" style="background: url('https://images.unsplash.com/photo-1616763355603-9755a640a287?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'); background-size: cover; background-position: center center;"></div>
         </div>
     </div>
 </div>
