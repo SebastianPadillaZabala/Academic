@@ -147,9 +147,9 @@ class LoginController extends Controller
         ];
         Log::channel('mydailylogs')->info('Acceso a bitacora: ', $info);
 
-        return redirect()->route('bitacora');
+        return redirect()->route('bitacora.bitacora');
        }else{
-        return redirect()->route('logBit');
+        return redirect()->route('bitacora.logBit');
        }
     }
 }

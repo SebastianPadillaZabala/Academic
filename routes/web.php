@@ -155,15 +155,15 @@ Route::get('/redirect',[LoginController::class, 'index'])
 ->name('re');
 
 ///Bitacora
-Route::get('/private00', function () {
-    return view('backoffice.pages.admin.passwordbitacora');
-})->name('logBit');
+Route::group(['middleware' => ['auth'],'as' => 'bitacora.'],function () {
+    Route::get('/private00', function () {
+        return view('backoffice.pages.admin.passwordbitacora');
+    })->name('logBit');
 
-Route::post('/private0101',[LoginController::class, 'loginBitacora'])
-->name('logBitacora');
-
-Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('bitacora');
-
+    Route::post('/private0101', [LoginController::class, 'loginBitacora'])
+        ->name('logBitacora');
+    Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('bitacora');
+});
 //Reportes
 Route::get('/reportes',function () {
     return view('backoffice.layouts.reporte');
@@ -184,7 +184,6 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
         ->name('user.assign_permission');
     Route::post('user/{user}/permission_assignment','App\Http\Controllers\UserController@permission_assignment')
         ->name('user.permission_assignment');
-
     Route::resource('user','App\Http\Controllers\UserController');
 });
 //todo frontoffice
