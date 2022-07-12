@@ -16,9 +16,4 @@ class Plan extends Model
     protected $primaryKey = 'id_Plan';
 
     static public $atributos = ['nombre_Plan', 'descripcion', 'Precio', 'duracion'];
-
-    ///Carol todos los planes 
-    public function getAllPlan() {
-        return $this->orderBy('id_Plan', 'desc')->get();
-    }
 }

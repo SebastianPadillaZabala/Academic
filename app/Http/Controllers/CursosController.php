@@ -52,7 +52,7 @@ class CursosController extends Controller
         $curso->cantidad_clases = 0;
         $curso->estado = 'Revision';
         $curso->fecha = Carbon::now();
-        $id_profesor = DB::table('profesores')->where('id_user','=', auth()->user()->id)->value('id_profe');
+        $id_profesor = DB::table('profesores')->where('id_user', '=', auth()->user()->id)->value('id_profe');
         $curso->id_prof = $id_profesor;
         $curso->id_categoria = $_POST['select'];
         $curso->save();

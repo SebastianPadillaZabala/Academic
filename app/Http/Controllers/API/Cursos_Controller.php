@@ -11,10 +11,11 @@ class Cursos_Controller extends Controller
 {
     public function index()
     {   $list = new Curso();
-        $list = DB::table('cursos')->where('estado','=',"Aceptado" )->get();
+        $list = $list->getAllCursos();
         $cursos=[];
         foreach($list as $item){
-    
+         $item['descripcion'] = strip_tags($item['descripcion']);
+         $item['descripcion']=$Content = preg_replace("/&#?[a-z0-9]+;/i"," ",$item['descripcion']);
          
          $curso = new \stdClass();
          $curso->id=$item->id_curso;

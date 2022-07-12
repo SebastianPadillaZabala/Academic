@@ -31,21 +31,18 @@ Route::middleware('auth:api')
 Route::middleware('auth:api')
     ->put('user', [App\Http\Controllers\API\RegisterController::class, 'userUpdate']);
 
-//obtener todos los Cursos
+//Cursos
 
 Route::get('cursos',[App\Http\Controllers\API\Cursos_Controller::class,'index']);
 
 //Clases_x_Curso
-Route::middleware('auth:api')
-->get('clases/{id_curso}',[App\Http\Controllers\API\Clases_Controller::class,'get_clases']);
 
+Route::get('clases/{id_curso}/{id_user}',[App\Http\Controllers\API\Clases_Controller::class,'get_clases']);
 
+//1 sola clase
+Route::get('clases/1clase/{id}',[App\Http\Controllers\API\Clases_Controller::class,'get_x_clase']);
 
-//crear mis cursos
-Route::middleware('auth:api')
-->put('crear_mis_cursos/{id_curso}',[App\Http\Controllers\API\Miscursos_Controller::class,'mis_cursos']);
+//mis cursos
+Route::post('crear_mis_cursos',[App\Http\Controllers\API\Miscursos_Controller::class,'mis_cursos']);
 //ver mis cursos
-Route::middleware('auth:api')
-->get('mis_cursos',[App\Http\Controllers\API\Miscursos_Controller::class,'get_mis_cursos']);
-//ver planes
-Route::get('planes',[App\Http\Controllers\API\Planes_Controller::class,'planes']);
+Route::get('mis_cursos/{id_user}',[App\Http\Controllers\API\Miscursos_Controller::class,'get_mis_cursos']);
