@@ -14,11 +14,12 @@ class Miscursos_Controller extends Controller
     {
         $request->validate([
             'curso_id' => 'required',
-            'id_user' => 'required',
+            
         ]);
 
         $curso_id=$request->curso_id;
-        $id_user=$request->id_user;
+        $user = Auth::user();
+          $id_user=$user->id;
 
         $date=Carbon::now();
         $date_ini=$date->format(format:'d-m-Y');
@@ -54,8 +55,9 @@ class Miscursos_Controller extends Controller
        }
     } 
 
-    public function get_mis_cursos($id_user)
-    {  
+    public function get_mis_cursos()
+    {   $user = Auth::user();
+        $id_user=$user->id;
         $alumno = DB::table('alumnos')->where('id_user',$id_user)->get();
         $cursos1=[];
       
@@ -89,3 +91,4 @@ class Miscursos_Controller extends Controller
     return response()->json($cursos1); 
  }
 }
+
