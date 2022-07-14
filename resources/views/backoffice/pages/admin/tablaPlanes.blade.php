@@ -6,7 +6,12 @@
 <h5 hidden class="text-2xl text-white font-medium lg:block">Bienvenido Administrador</h5>
 @endsection
 @section('breadcrumbs')
-
+    <li>
+        <div class="flex items-center">
+            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">Tabla planes</a>
+        </div>
+    </li>
 @endsection
 
 @section('content')
@@ -29,11 +34,11 @@
             </button>
             <div class="flex space-x-4">
                   <!--/search bar -->
-                  <div hidden class="md:block">                    
+                  <div hidden class="md:block">
                     <a href="{{route('Addplan')}}">
                         <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Añadir Plan</button>
-                    </a>                                
-                </div>  
+                    </a>
+                </div>
                 <!--search bar -->
             </div>
         </div>
@@ -49,7 +54,7 @@
 		<tbody class="block md:table-row-group">
         @foreach($planes as $p)
 			<tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-               
+
 				<td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{$p->nombre_Plan}}</td>
                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Precio</span>{{$p->Precio}}</td>
                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Duracion</span>{{$p->duracion}}</td>
