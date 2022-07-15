@@ -6,11 +6,6 @@
         <ul class="flex flex-col">
             <li class="font-medium text-2XL text-white uppercase mb-4">
                 LISTA DE REPRODUCCION
-                <a href="#">
-                    <button class="mx-9 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 border border-indigo-700 rounded-md">
-                        Siguiente
-                    </button>
-                </a>
             </li>
             @foreach($clase_curso as $c)
             <a href="{{route('claseR',[$c->id_clase])}}">

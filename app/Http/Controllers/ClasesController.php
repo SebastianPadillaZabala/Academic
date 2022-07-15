@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Type\Integer;
 
 class ClasesController extends Controller
 {
@@ -119,12 +120,26 @@ class ClasesController extends Controller
     }
 
     public function redirectClase($id_clase){
+        $avance =0;
+
         $clase = Clase::find($id_clase);
         $clase_curso = DB::table('clases')
         ->join('cursos', 'clases.id_curso', '=', 'cursos.id_curso')
         ->select('clases.*', 'cursos.nombreCurso')
         ->where('clases.id_curso', '=', $clase->id_curso)->get();
-
+        $avance =(integer)( 100 * $id_clase)/count($clase_curso);
+        settype($avance,"integer");
+         $actual = DB::table('cursos_alumnos')
+             ->join('cursos', 'cursos_alumnos.curso_id', '=', 'cursos.id_curso')
+             ->select('*')
+             ->where('cursos_alumnos.curso_id', '=', $clase->id_curso)->get();
+         if ($actual[0]->progreso < 100 && $actual[0]->progreso < $avance ){
+             DB::table('cursos_alumnos')
+                 ->where('cursos_alumnos.id','=',$actual[0]->id)
+                 ->update([
+                     'progreso'=>$avance,
+                 ]);
+         }
         return view('prueba3', ['clase_curso'=>$clase_curso], ['clase'=>$clase]);
     }
 
@@ -138,4 +153,5 @@ class ClasesController extends Controller
     {
         //
     }
+
 }
