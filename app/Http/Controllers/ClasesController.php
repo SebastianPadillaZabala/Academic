@@ -18,6 +18,10 @@ class ClasesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('role:' . config('app.estudiante_role'));
+    }
     public function index($id)
     {
         return view('auth.regClase', ['id'=>$id]);
@@ -133,7 +137,7 @@ class ClasesController extends Controller
              ->join('cursos', 'cursos_alumnos.curso_id', '=', 'cursos.id_curso')
              ->select('*')
              ->where('cursos_alumnos.curso_id', '=', $clase->id_curso)->get();
-         if ($actual[0]->progreso < 100 && $actual[0]->progreso < $avance ){
+         if ($actual[0]->progreso < 100 && $actual[0]->progreso > $avance ){
              DB::table('cursos_alumnos')
                  ->where('cursos_alumnos.id','=',$actual[0]->id)
                  ->update([

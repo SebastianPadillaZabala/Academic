@@ -210,5 +210,5 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('search',[App\Http\Controllers\SearchController::class,'index'])->name('search');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('search',[App\Http\Controllers\SearchController::class,'index'])->name('search');

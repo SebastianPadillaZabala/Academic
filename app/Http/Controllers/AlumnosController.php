@@ -24,8 +24,8 @@ class AlumnosController extends Controller
     {
             $id = Auth()->user()->id;
             //$alumno = DB::select('SELECT * FROM alumnos, users where alumnos.id_user=users.id and users.id = '. $id);
-            $alumno = DB::select('SELECT alumnos.*, users.*, suscripciones.fecha_inicio, suscripciones.fecha_final, (true) as x 
-            FROM alumnos, users, suscripciones 
+            $alumno = DB::select('SELECT alumnos.*, users.*, suscripciones.fecha_inicio, suscripciones.fecha_final, (true) as x
+            FROM alumnos, users, suscripciones
             where alumnos.id_user=users.id and users.id = '.$id. 'and suscripciones.id_user ='.$id);
              if($alumno == null){
                  $alumno = DB::select('SELECT alumnos.*, users.*, (false) as x
@@ -33,7 +33,7 @@ class AlumnosController extends Controller
                 }
            $curso = DB::select('SELECT * FROM  cursos_alumnos, cursos, alumnos
            where cursos.id_curso=cursos_alumnos.curso_id and  alumnos.id_alum=cursos_alumnos.alumno_id and alumnos.id_user = '. $id
-           
+
            );
 
             return view('frontoffice.pages.profile_alumno.index',[
@@ -71,6 +71,11 @@ class AlumnosController extends Controller
     //    $alumno->id_user = DB::table('users')->max('id');
         $alumno->id_user = $user->id;
         $alumno->save();
+
+        DB::table('role_user')->insert([
+            'role_id'=>3,
+            'user_id'=>$user->id,
+        ]);
 
         $email = $request->input('email');
         $pass = $request->input('password');

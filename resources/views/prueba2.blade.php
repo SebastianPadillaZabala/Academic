@@ -11,7 +11,7 @@
             @foreach($clase_curso as $c)
             <a href="{{route('claseR',[$c->id_clase])}}">
                 <li class="flex items-center text-white mt-2 hover:text-blue-600">
-                    <a href="{{route('avanzar',$c->Nro_clase)}}">{{$c->Nro_clase}}.- {{$c->Titulo}}</a>
+                    {{$c->Nro_clase}}.- {{$c->Titulo}}
                 </li>
             </a>
             @endforeach
