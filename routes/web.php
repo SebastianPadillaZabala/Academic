@@ -207,3 +207,8 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
     ->name('preguntas.index');
     Route::post('/preguntas',[preguntasController::class, 'create'])
     ->name('pregunta.registrar');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('search',[App\Http\Controllers\SearchController::class,'index'])->name('search');
