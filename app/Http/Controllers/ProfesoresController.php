@@ -58,6 +58,10 @@ class ProfesoresController extends Controller
                 'email' => $email,
                 'password' => $pass
             );
+            DB::table('role_user')->insert([
+                'role_id'=>2,
+                'user_id'=>$user->id,
+            ]);
             $auth = Auth::attempt($credentials);
 
             $info = [
