@@ -33,7 +33,7 @@
     </div>
     <div class="text-gray-700 col-span-2">        
         <h2 style="text-align:center" class="text-4xl font-semibold pt-5 text-indigo-700">{{$examen->titulo}}</h2>
-        <hr />
+        <hr/>
         <h3 class="text-2xl pt-2 font-semibold text-indigo-700">Descripcion</h3>
         <p class="text-lg text-gray-900">{{$examen->descripcion}}</p>
         @php $c2 = 0 @endphp        
