@@ -241,6 +241,6 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
     Route::post('/preguntas',[preguntasController::class, 'create'])
     ->name('pregunta.registrar');
 
-Auth::routes();
+
 Route::post('search',[App\Http\Controllers\SearchController::class,'index'])->name('search');
 
