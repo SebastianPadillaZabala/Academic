@@ -6,21 +6,16 @@
         <div class="flex rounded-lg shadow-lg w-full sm:w-3/4 lg:w-3/2 bg-white ">
             <div class="flex flex-col w-full md:w-1/2 p-4">
                 <div class="flex flex-col flex-1 justify-center mb-8">
-                    <h1 class="text-4xl text-center font-thin">FELICIDADES</h1>
+                    <h1 class="text-4xl text-center font-thin">OH NO, HAS FALLADO</h1>
                     <div class="w-full mt-8 mb-4 items-center">                                  
-                        <p style="text-align: center" class="font-semibold text-gray-400">¡Enhorabuena!</p>                
-                        <p style="text-align: center" class="font-semibold text-gray-400">Has Aprobado la evaluación</p>                
-                        <p style="text-align: center" class="font-semibold text-gray-400">Cada vez, más cerca de la meta</p>                
-                        <p style="text-align: center" class="font-semibold text-gray-400">Sigue Adelante.</p>                
+                        <p style="text-align: center" class="font-semibold text-gray-400">¡Estudia más!</p>                
+                        <p style="text-align: center" class="font-semibold text-gray-400">Has fallado la evaluación</p>                
+                        <p style="text-align: center" class="font-semibold text-gray-400">Te recomendamos ver con atencion las clases</p>                
+                        <p style="text-align: center" class="font-semibold text-gray-400">No te desanimes, intentalo en otra ocasión.</p>                
                         <div style="align-content: center" class="flex flex-col mt-4 items-center">
                             <a class="flex items-center mt-8" href="{{route('frontoffice.alumno.index')}}">
                             <button style="width:100px" class="bg-indigo-500 hover:bg-indigo-700 text-white items-center text-sm font-semibold py-2 px-4 rounded">
                                 Salir
-                            </button>
-                        </a>
-                        <a class="flex items-center mt-2" href="{{route('certificado.imprimir',[$id_examen])}}" target="_blank">
-                            <button style="width:200px" class="bg-indigo-500 hover:bg-indigo-700 text-white items-center text-sm font-semibold py-2 px-4 rounded">
-                                Obtener Certificado
                             </button>
                         </a>
                         </div>                        

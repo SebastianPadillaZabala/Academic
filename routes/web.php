@@ -32,6 +32,10 @@ Route::get('/log', function () {
 Route::post('/loggin',[LoginController::class, 'login'])
 ->name('loggin');
 
+///Certificados
+Route::get('/certificado/{id}',[examenesController::class, 'certificado'])
+->name('certificado.imprimir');
+
 ///Examenes
 
 Route::get('/examenes/{id}',[examenesController::class, 'index'])

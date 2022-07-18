@@ -6,8 +6,10 @@ use App\Models\Clase;
 use App\Models\Examen;
 use App\Models\Examen_Alumno;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class examenesController extends Controller
 {
@@ -91,20 +93,71 @@ class examenesController extends Controller
                 $nro++;                    
         }        
         $promedio = $promedio * 100 / count($incisos);
+        $id = Auth()->user()->id;
+        $alumno = DB::table('alumnos')
+        ->select('id_alum')              
+        ->where('id_user', '=', $id)->first();
+               
         if($promedio > 80.0){
             $examen_alumno = new Examen_Alumno();
             $examen_alumno->fecha = Carbon::now();
-            $examen_alumno->estado = "aprobado";
-            return view('aprobado');
+            $examen_alumno->estado_examen_alumno = "aprobado";
+            $examen_alumno->examen_id = $id_examen;
+            $examen_alumno->alumno_id = $alumno->id_alum;
+            $examen_alumno->save();
+            return view('aprobado', ['id_examen' => $id_examen]);
         }else{
             $examen_alumno = new Examen_Alumno();
             $examen_alumno->fecha = Carbon::now();
-            $examen_alumno->estado = "reprobado";
+            $examen_alumno->estado_examen_alumno = "reprobado";
+            $examen_alumno->examen_id = $id_examen;
+            $examen_alumno->alumno_id = $alumno->id_alum;
+            $examen_alumno->save();
             return view('reprobado');
         }                
+        
     }
 
     public function salir(){
         return view('alumno.dashboard');
+    }
+
+    public function certificado($id_examen){    
+        $curso = DB::table('examenes')  
+        ->where('id_examen', '=', $id_examen)->first();                         
+
+        $curso_nombre = DB::table('cursos')
+        ->where('id_curso','=',$curso->curso_id)->first();
+        $nombreC = $curso_nombre->nombreCurso;
+
+        $profe = DB::table('profesores')
+        ->join('cursos','cursos.id_prof','=','profesores.id_profe')
+        ->select('profesores.id_profe')
+        ->where('cursos.id_curso','=',$curso->curso_id)->first();
+        
+        $id_userP = DB::table('users')
+        ->join('profesores','users.id','=','profesores.id_user')
+        ->select('id')
+        ->where('profesores.id_profe','=',$profe->id_profe)->first();
+        
+        $nombreP = DB::table('users')
+        ->select('name')              
+        ->where('id', '=', $id_userP->id)->first();
+
+        $apellidoP = DB::table('users')
+        ->select('apellido')              
+        ->where('id', '=', $id_userP->id)->first();
+
+        $id = Auth()->user()->id;                
+        
+        $nombre = DB::table('users')
+        ->select('name')              
+        ->where('id', '=', $id)->first();
+
+        $apellido = DB::table('users')
+        ->select('apellido')              
+        ->where('id', '=', $id)->first();
+
+        return view('frontoffice.certificado',['nombre_alumno' =>$nombre->name, 'apellido_alumno' => $apellido->apellido, 'nombre_profesor' =>$nombreP->name, 'apellido_profesor' => $apellidoP->apellido, 'nombre_curso' => $nombreC]);
     }
 }
