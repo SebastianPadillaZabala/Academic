@@ -133,28 +133,22 @@ class ClasesController extends Controller
         ->join('cursos', 'clases.id_curso', '=', 'cursos.id_curso')
         ->select('clases.*', 'cursos.nombreCurso')
         ->where('clases.id_curso', '=', $clase->id_curso)->get();
-<<<<<<< HEAD
         $avance =(integer)( 100 * $id_clase)/count($clase_curso);
         settype($avance,"integer");
          $actual = DB::table('cursos_alumnos')
              ->join('cursos', 'cursos_alumnos.curso_id', '=', 'cursos.id_curso')
              ->select('*')
              ->where('cursos_alumnos.curso_id', '=', $clase->id_curso)->get();
-         if ($actual[0]->progreso < 100 && $actual[0]->progreso > $avance ){
+         if ($actual[0]->progreso < 100 && $actual[0]->progreso < $avance ){
              DB::table('cursos_alumnos')
                  ->where('cursos_alumnos.id','=',$actual[0]->id)
                  ->update([
                      'progreso'=>$avance,
                  ]);
          }
-        return view('prueba3', ['clase_curso'=>$clase_curso], ['clase'=>$clase]);
-=======
-
-        $examen_curso = DB::table('examenes')             
-        ->where('examenes.curso_id', '=', $clase->id_curso)->get();  
-
+        $examen_curso = DB::table('examenes')
+        ->where('examenes.curso_id', '=', $clase->id_curso)->get();
         return view('prueba3', ['clase_curso'=>$clase_curso], ['clase'=>$clase, 'examen_curso'=>$examen_curso]);
->>>>>>> 40172e9891106ddf487dca6af133979346c9a94e
     }
 
     /**
