@@ -39,8 +39,6 @@ Route::get('cursos',[App\Http\Controllers\API\Cursos_Controller::class,'index'])
 Route::middleware('auth:api')
 ->get('clases/{id_curso}',[App\Http\Controllers\API\Clases_Controller::class,'get_clases']);
 
-
-
 //crear mis cursos
 Route::middleware('auth:api')
 ->put('crear_mis_cursos/{id_curso}',[App\Http\Controllers\API\Miscursos_Controller::class,'mis_cursos']);
@@ -48,4 +46,10 @@ Route::middleware('auth:api')
 Route::middleware('auth:api')
 ->get('mis_cursos',[App\Http\Controllers\API\Miscursos_Controller::class,'get_mis_cursos']);
 //ver planes
-Route::get('planes',[App\Http\Controllers\API\Planes_Controller::class,'planes']);
+Route::get('planes',[App\Http\Controllers\API\Suscripcion_Controller::class,'planes']);
+// ingresar tarjeta
+Route::middleware('auth:api')
+->put('suscripcion/{id_plan}',[App\Http\Controllers\API\Suscripcion_Controller::class,'suscripcion']);
+//insertar progreso
+Route::middleware('auth:api')
+->put('progreso/{id_curso}/{index}',[App\Http\Controllers\API\Miscursos_Controller::class,'progresoCurso']);
