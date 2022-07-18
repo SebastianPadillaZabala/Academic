@@ -96,7 +96,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile_alumno.show') }}">
+                            <x-jet-dropdown-link href="{{ route('frontoffice.alumno.show') }}">
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 

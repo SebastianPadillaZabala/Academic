@@ -188,15 +188,15 @@ Route::post('/cursos/ajax',[CursosController::class, 'all'])
 
 
 ///Bitacora
-Route::get('/private00', function () {
-    return view('backoffice.pages.admin.passwordbitacora');
-})->name('logBit');
+Route::group(['middleware' => ['auth'],'as' => 'bitacora.'],function () {
+    Route::get('/private00', function () {
+        return view('backoffice.pages.admin.passwordbitacora');
+    })->name('logBit');
 
-Route::post('/private0101',[LoginController::class, 'loginBitacora'])
-->name('logBitacora');
-
-Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('bitacora');
-
+    Route::post('/private0101', [LoginController::class, 'loginBitacora'])
+        ->name('logBitacora');
+    Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('bitacora');
+});
 //Reportes
 Route::get('/reportes',function () {
     return view('backoffice.layouts.reporte');
@@ -217,7 +217,6 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
         ->name('user.assign_permission');
     Route::post('user/{user}/permission_assignment','App\Http\Controllers\UserController@permission_assignment')
         ->name('user.permission_assignment');
-
     Route::resource('user','App\Http\Controllers\UserController');
 });
 //todo frontoffice
@@ -233,4 +232,15 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
         Route::put('profile_profesor/change_password','App\Http\Controllers\ProfesoresController@change_password')->name('profesor.change_password');
     });
 
+    Route::get('/examenes',[examenesController::class, 'index'])
+    ->name('examen.crear');
+    Route::post('/examenes',[examenesController::class, 'create'])
+    ->name('examen.registrar');
+    Route::get('/preguntas',[preguntasController::class, 'index'])
+    ->name('preguntas.index');
+    Route::post('/preguntas',[preguntasController::class, 'create'])
+    ->name('pregunta.registrar');
+
+Auth::routes();
+Route::post('search',[App\Http\Controllers\SearchController::class,'index'])->name('search');
 

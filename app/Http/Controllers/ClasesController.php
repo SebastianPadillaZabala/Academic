@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Type\Integer;
 
 class ClasesController extends Controller
 {
@@ -17,6 +18,10 @@ class ClasesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('role:' . config('app.estudiante_role') . '-' . config('app.profesor_role'));
+    }
     public function index($id)
     {
         return view('auth.regClase', ['id'=>$id]);
@@ -112,25 +117,38 @@ class ClasesController extends Controller
              ->join('cursos', 'clases.id_curso', '=', 'cursos.id_curso')
              ->select('clases.*', 'cursos.nombreCurso')
              ->where('clases.id_curso', '=', $id_curso)->get();
-             
-             $examen_curso = DB::table('examenes')             
-             ->where('examenes.curso_id', '=', $id_curso)->get();             
-            
+
+             $examen_curso = DB::table('examenes')
+             ->where('examenes.curso_id', '=', $id_curso)->get();
+
              return view('prueba2', ['clase_curso'=>$clase_curso], ['examen_curso' => $examen_curso]);
            }
     }
 
     public function redirectClase($id_clase){
+        $avance =0;
+
         $clase = Clase::find($id_clase);
         $clase_curso = DB::table('clases')
         ->join('cursos', 'clases.id_curso', '=', 'cursos.id_curso')
         ->select('clases.*', 'cursos.nombreCurso')
         ->where('clases.id_curso', '=', $clase->id_curso)->get();
-
-        $examen_curso = DB::table('examenes')             
-        ->where('examenes.curso_id', '=', $clase->id_curso)->get(); 
-
-        return view('prueba3', ['clase_curso'=>$clase_curso], ['clase'=>$clase, 'examen_curso' => $examen_curso]);
+        $avance =(integer)( 100 * $id_clase)/count($clase_curso);
+        settype($avance,"integer");
+         $actual = DB::table('cursos_alumnos')
+             ->join('cursos', 'cursos_alumnos.curso_id', '=', 'cursos.id_curso')
+             ->select('*')
+             ->where('cursos_alumnos.curso_id', '=', $clase->id_curso)->get();
+         if ($actual[0]->progreso < 100 && $actual[0]->progreso < $avance ){
+             DB::table('cursos_alumnos')
+                 ->where('cursos_alumnos.id','=',$actual[0]->id)
+                 ->update([
+                     'progreso'=>$avance,
+                 ]);
+         }
+        $examen_curso = DB::table('examenes')
+        ->where('examenes.curso_id', '=', $clase->id_curso)->get();
+        return view('prueba3', ['clase_curso'=>$clase_curso], ['clase'=>$clase, 'examen_curso'=>$examen_curso]);
     }
 
     /**
@@ -143,4 +161,5 @@ class ClasesController extends Controller
     {
         //
     }
+
 }

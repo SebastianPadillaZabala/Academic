@@ -29,7 +29,8 @@ class Cursos_Controller extends Controller
          array_push($cursos, $curso);
         }
          return response()->json($cursos);
- 
-  
     }
+    public function get_by_Categorias()
+    { }
+
 }

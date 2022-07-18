@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Alumno;
 use App\Models\Curso;
@@ -18,8 +19,10 @@ class Miscursos_Controller extends Controller
         ]);
 
         $curso_id=$request->curso_id;
+
+         /** @var \App\Models\MyUserModel $user **/
         $user = Auth::user();
-          $id_user=$user->id;
+        $id_user=$user->id;
 
         $date=Carbon::now();
         $date_ini=$date->format(format:'d-m-Y');
@@ -28,10 +31,10 @@ class Miscursos_Controller extends Controller
         foreach($alumno as $id_alumno){
            $id=$id_alumno->id_alum;
         }
-        $mis_cursos= DB::table('cursos_alumnos')->where('alumno_id',$id and 'curso_id',$curso_id)->get();
+        $mis_cursos= DB::table('cursos_alumnos')->where('alumno_id',$id)->where('curso_id',$curso_id)->count();
         $nulo=DB::table('cursos_alumnos')->count();
    
-        if(!$mis_cursos  || $nulo==0){
+        if($mis_cursos==0  || $nulo==0){
         DB::table(table:'cursos_alumnos')->insert([
             'fecha_inicio'=>$date_ini,
             'fecha_fin'=>$date_fin,
@@ -45,18 +48,19 @@ class Miscursos_Controller extends Controller
     
         return response([
             'message' => 'curso alumno created.',
-            'curso' => $curso_id,
+            'curso' => $mis_cursos,
         ], 200);
        }else{
         return response([
             'message' => 'curso alumno ya existe.',
-            'curso' => $curso_id,
+            'curso' => $mis_cursos,
         ], 200);
        }
     } 
 
     public function get_mis_cursos()
-    {   $user = Auth::user();
+    {   /** @var \App\Models\MyUserModel $user **/
+        $user = Auth::user();
         $id_user=$user->id;
         $alumno = DB::table('alumnos')->where('id_user',$id_user)->get();
         $cursos1=[];
@@ -64,6 +68,7 @@ class Miscursos_Controller extends Controller
         foreach($alumno as $id_alumno){
             $id=$id_alumno->id_alum;
           $mis_cursos=DB::table('cursos_alumnos')->where('alumno_id',$id)->get();
+          
           if($mis_cursos){
             foreach($mis_cursos as $id_curso){
             $idc=$id_curso->curso_id;
@@ -88,7 +93,48 @@ class Miscursos_Controller extends Controller
        
        }else{}
      }
-    return response()->json($cursos1); 
+       return response()->json($cursos1); 
  }
+
+ public function progresoCurso($id_curso,$index){
+    
+    $user = Auth::user();
+    $id_user=$user->id;
+
+    $alumno = DB::table('alumnos')->where('id_user',$id_user)->get();
+    foreach($alumno as $id_alumno){
+        $id=$id_alumno->id_alum;
+     }
+     $progreso= DB::table('cursos_alumnos')->where('alumno_id',$id)->where('curso_id',$id_curso)->value('progreso');
+     $clases_count=DB::table('clases')->where('id_curso',$id_curso)->count();
+if ($clases_count!=0){
+    if ($clases_count==$index){
+        $progreso=100;
+    }else{
+    $progreso=($index*100)/$clases_count;
+    $progreso=floor( $progreso);
+
+
+    }
+  
+    $id = DB::table('cursos_alumnos')->where('alumno_id',$id)->where('curso_id',$id_curso)->value('id');
+    $aux_progreso=DB::table('cursos_alumnos')->where('alumno_id',$id)->where('curso_id',$id_curso)->value('progreso');
+    
+    DB::table('cursos_alumnos')
+    ->where('id',$id)
+    ->update([
+        'progreso'=>$progreso,
+     
+    ]);
+    
+    
+}
+        return response([
+            'progreso' => $progreso,
+        ], 200);
+    
+    }
+      
+
 }
 

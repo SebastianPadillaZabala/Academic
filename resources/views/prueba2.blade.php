@@ -7,11 +7,6 @@
         <ul class="flex flex-col">
             <li class="font-medium text-2XL text-white uppercase mb-4">
                 LISTA DE REPRODUCCION
-                <a href="#">
-                    <button class="mx-9 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 border border-indigo-700 rounded-md">
-                        Siguiente
-                    </button>
-                </a>
             </li>
             @foreach($clase_curso as $c)
             <a href="{{route('claseR',[$c->id_clase])}}">
@@ -21,15 +16,15 @@
             </a>
             @endforeach
             <li class="font-medium text-2XL text-white uppercase mt-10">
-                EVALUACIONES            
+                EVALUACIONES
             </li>
             @foreach($examen_curso as $ec)
             <a href="{{route('evaluacion',[$ec->id_examen])}}">
                 <li class="flex items-center text-white mt-2 hover:text-blue-600">
                     - {{$ec->titulo}}
                 </li>
-            </a>   
-            @endforeach                 
+            </a>
+            @endforeach
         </ul>
     </div>
     <div class="text-gray-700 col-span-2">
