@@ -32,6 +32,26 @@ Route::get('/log', function () {
 Route::post('/loggin',[LoginController::class, 'login'])
 ->name('loggin');
 
+///Examenes
+
+Route::get('/examenes/{id}',[examenesController::class, 'index'])
+->name('examenes');
+Route::post('/examenesReg/{id}',[examenesController::class, 'create'])
+->name('examenes.registrar');
+
+Route::get('/preguntas/{id}',[preguntasController::class, 'index'])
+->name('preguntas');
+Route::post('/preguntasReg/{id}',[preguntasController::class, 'create'])
+->name('preguntas.registrar');
+
+Route::get('/evaluacion/{id}', [examenesController::class, 'redirect'])
+->name('evaluacion');
+Route::post('/revision/{id}', [examenesController::class, 'revisar'])
+->name('revisar');
+
+Route::get('/aprobado', [examenesController::class, 'salir'])
+->name('aprobado.salir');
+
 ////TODO ADMIN
 Route::get('/admin', function () {
     return view('backoffice.pages.admin.dashboard');
@@ -200,11 +220,4 @@ Route::group(['middleware' => ['auth'],'as' => 'backoffice.'],function (){
         Route::put('profile_profesor/change_password','App\Http\Controllers\ProfesoresController@change_password')->name('profesor.change_password');
     });
 
-    Route::get('/examenes',[examenesController::class, 'index'])
-    ->name('examen.crear');
-    Route::post('/examenes',[examenesController::class, 'create'])
-    ->name('examen.registrar');
-    Route::get('/preguntas',[preguntasController::class, 'index'])
-    ->name('preguntas.index');
-    Route::post('/preguntas',[preguntasController::class, 'create'])
-    ->name('pregunta.registrar');
+
