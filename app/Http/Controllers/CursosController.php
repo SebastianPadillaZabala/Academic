@@ -26,6 +26,16 @@ class CursosController extends Controller
         return view('auth.registrar_curso', ['categoria' => $categoria]);
     }
 
+    public function all(Request $request){
+        $grafica3 = DB::table('cursos')
+        ->select('cursos.*')
+        ->orderBy('cant_sus', 'DESC')
+        ->take(2)
+        ->get();
+
+        return response(json_encode($grafica3), 200)->header('Content-type', 'text/plain');
+    }
+
     public function cursosAdmin()
     {
         $cursos = DB::select('select * from cursos INNER JOIN categorias

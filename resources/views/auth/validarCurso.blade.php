@@ -19,7 +19,7 @@
                               </select>
                             <div class="flex flex-col mt-8">
                                 <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white text-sm font-semibold py-2 px-4 rounded">
-                                  Resgistrar
+                                  Registrar
                                 </button>
                             </div>
                         </form>

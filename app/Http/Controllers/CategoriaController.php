@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
 
@@ -115,12 +116,19 @@ class CategoriaController extends Controller
                 return view('layouts.categorias', ['categorias' => $categorias]);
             } else {
                 if (auth()->user()->tipo == 'Admin') {
+
                     return view('backoffice.pages.admin.tablaCategorias', ['categorias' => $categorias]);
                 }
                 return view('backoffice.pages.profesor.categorias', ['categorias' => $categorias]);
             }
         }
         return view('layouts.categorias', ['categorias' => $categorias]);
+    }
+
+    public function all(Request $request){
+        $grafica = DB::select('select categorias.*, count(id_curso) as cursos from categorias, cursos where id_cat = id_categoria
+        group by id_cat');
+        return response(json_encode($grafica), 200)->header('Content-type', 'text/plain');
     }
 
     public function categoriasTable()

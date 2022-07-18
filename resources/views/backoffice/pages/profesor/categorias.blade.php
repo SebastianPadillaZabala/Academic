@@ -11,7 +11,7 @@
 
 @section('content')
     @section('name')
-    <img src="https://cdn-icons-png.flaticon.com/512/2643/2643361.png" alt="" class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
+    <img src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="" class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
             <h5 class="hidden mt-4 text-xl font-semibold text-white lg:block">
                 {{auth()->user()->name}}
             </h5>
@@ -30,8 +30,7 @@
         </div>
     <div class="mt-2 px-2 grid gap-3 lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2">
     @foreach($categorias as $cat)
-    <div class="max-w-sm h-auto mx-auto my-8 rounded overflow-hidden shadow-lg transform transition-all hover:-translate-y-4">
-    <a href="{{route('prueba', ['cat'=>$cat->id_cat])}}"> 
+    <div class="max-w-sm h-auto mx-auto my-8 rounded overflow-hidden shadow-lg transform transition-all hover:-translate-y-4"> 
     <img class="object-cover h-48 w-96" src="https://edustud.nic.in/edu/images/Academic1.jpg" alt="Volcano">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2 hover:text-indigo-500 hover:cursor-pointer">{{$cat->nombreCategoria}}</div>
@@ -39,7 +38,6 @@
            {{$cat->descripcion}}
           </p>
        </div>
-       </a> 
     </div>
     @endforeach
    </div>

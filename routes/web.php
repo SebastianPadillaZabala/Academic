@@ -174,6 +174,15 @@ Route::post('/checkout/{id}',[SuscripcionController::class, 'store'])
 Route::get('/redirect',[LoginController::class, 'index'])
 ->name('re');
 
+///AJAX
+Route::post('/categoria/ajax',[CategoriaController::class, 'all'])
+->name('ajax');
+Route::post('/suscripciones/ajax',[SuscripcionController::class, 'all'])
+->name('ajax2');
+Route::post('/cursos/ajax',[CursosController::class, 'all'])
+->name('ajax3');
+
+
 ///Bitacora
 Route::get('/private00', function () {
     return view('backoffice.pages.admin.passwordbitacora');
