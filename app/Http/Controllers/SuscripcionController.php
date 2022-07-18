@@ -54,7 +54,6 @@ class SuscripcionController extends Controller
         $p = Carbon::now();
         $aux = DB::table('planes')->where('id_Plan',$id)->value('duracion');
         $suscripcion->fecha_final = $p->addDay($aux);
-        $suscripcion->estado = 'activa';
         $suscripcion->id_user = auth()->user()->id;
         $suscripcion->id_plan = $id;
         $suscripcion->save();
