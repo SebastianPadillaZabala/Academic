@@ -67,18 +67,17 @@
           <p>N° Alumnos: {{$c->cant_sus}}</p>
         </div>
         <a href="{{route('regClase',[$c->id_curso])}}">                             
-          <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Clase</button>
-          <a/>
-          <a href="{{route('examenes',[$c->id_curso])}}">                             
-            <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Examen</button>
-            <a/>
-          <a href="{{route('clase',[$c->id_curso])}}">   
-      <a href="{{route('regClase',[$c->id_curso])}}">
-        <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Clase</button>
-        <a />
-        <a href="{{route('clase',[$c->id_curso])}}">
-          <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Revisar</button>
-          <a />
+                <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Clase</button>
+                <a/>
+                <a href="{{route('examenes',[$c->id_curso])}}">                             
+                  <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Examen</button>
+                  <a/>                
+            <a href="{{route('regClase',[$c->id_curso])}}">
+              <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Añadir Clase</button>
+              <a />
+              <a href="{{route('clase',[$c->id_curso])}}">
+                <button class="mt-4 text-l w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Revisar</button>
+                <a />
         @endforeach
     </div>
 </main>
