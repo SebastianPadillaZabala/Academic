@@ -17,12 +17,12 @@ class LoginController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->tipo == 'Admin'){
+        if(auth()->user()->tipo == 'Administrador'){
             return redirect()->route('admin.dashboard');
 
         }
         if(auth()->user()->tipo == 'Profesor'){
-            return redirect()->route('profesor.dashboard');
+            return view('backoffice.pages.profesor.dashboard');
         }
         if(auth()->user()->tipo == 'Alumno'){
             return redirect()->route('frontoffice.alumno.index');
