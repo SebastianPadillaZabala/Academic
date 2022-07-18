@@ -6,7 +6,7 @@
 
     <div class="image overflow-hidden">
         <img class="h-auto w-full mx-auto"
-             src="https://previews.123rf.com/images/yupiramos/yupiramos1711/yupiramos171108094/89817780-dise%C3%B1o-de-ilustraci%C3%B3n-de-vector-de-profesor-de-avatar-masculino-maestro.jpg"
+             src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
              alt="">
     </div>
     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$profesor->name}}</h1>
