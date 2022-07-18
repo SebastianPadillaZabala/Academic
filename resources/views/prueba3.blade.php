@@ -28,6 +28,7 @@
                     - {{$ec->titulo}}
                 </li>
             </a> 
+            @endforeach
         </ul>
     </div>
     <div class="text-gray-700 col-span-2">

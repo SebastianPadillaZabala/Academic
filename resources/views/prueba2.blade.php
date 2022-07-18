@@ -21,15 +21,15 @@
             </a>
             @endforeach
             <li class="font-medium text-2XL text-white uppercase mt-10">
-                EVALUACIONES            
+                EVALUACIONES
             </li>
             @foreach($examen_curso as $ec)
             <a href="{{route('evaluacion',[$ec->id_examen])}}">
                 <li class="flex items-center text-white mt-2 hover:text-blue-600">
                     - {{$ec->titulo}}
                 </li>
-            </a>   
-            @endforeach                 
+            </a>
+            @endforeach
         </ul>
     </div>
     <div class="text-gray-700 col-span-2">
