@@ -399,8 +399,8 @@
     </style>
 </head>
 
-<body class="font-sans antialiased">
-    @livewire('examen')
+<body class="font-sans antialiased">    
+    @livewire('examen', [ 'id_examen' => $id])
     @stack('scripts')
     <script>
         function data() {

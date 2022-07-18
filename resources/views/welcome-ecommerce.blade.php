@@ -2,7 +2,6 @@
 
 @section('content')
     @include('layouts.presentacion')
-    @include('layouts.cursos')
     @include('layouts.testimonios')
     @include('layouts.contactanos')
     @include('layouts.features')

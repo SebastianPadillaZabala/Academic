@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('incisos', function (Blueprint $table) {
             $table->id('id_inciso');
             $table->string('inciso');
-            $table->string('tipo');
+            $table->string('tipo_inciso');
             $table->unsignedBigInteger('pregunta_id');
             $table->timestamps();
 

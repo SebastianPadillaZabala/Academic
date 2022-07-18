@@ -10,10 +10,10 @@ class Inciso extends Model
     use HasFactory;
     protected $table = 'incisos';
     protected $fillable = [
-        'inciso', 'tipo', 'pregunta_id'
+        'inciso', 'tipo_inciso', 'pregunta_id'
     ];
     protected $primaryKey = 'id_inciso';
 
-    static public $atributos = ['inciso', 'tipo'];
+    static public $atributos = ['inciso', 'tipo_inciso'];
 
 }

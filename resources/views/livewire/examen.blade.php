@@ -6,7 +6,7 @@
             <div class="flex flex-col flex-1 justify-center mb-8">
                 <h1 class="text-4xl text-center font-thin">Pregunta</h1>
                 <div class="w-full mt-4">
-                    <form class="form-horizontal w-3/4 mx-auto" method="POST" action="{{ route('pregunta.registrar') }}">
+                    <form class="form-horizontal w-3/4 mx-auto" method="POST" action="{{ route('preguntas.registrar', [$id]) }}">
                        @csrf
                        <div class="flex flex-col mt-2">
                             <input id="pregunta" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="pregunta" value="" placeholder="Pregunta" required autofocus>
@@ -98,9 +98,12 @@
                             </div>                                           
                         @endif                     
                         
-                        <div class="flex flex-col mt-2">                            
-                            <button type="submit"  class="bg-indigo-500 hover:bg-indigo-700 text-white text-sm font-semibold py-2 px-4 rounded">
+                        <div class="flex flex-row mt-2">                            
+                            <button type="submit"  class="bg-indigo-500 hover:bg-indigo-700 text-white text-sm font-semibold py-2 px-4 rounded mr-3">
                                 Aceptar
+                            </button>                           
+                            <button wire:click ="exit" type="button" class="bg-indigo-500 hover:bg-indigo-700 text-white text-sm font-semibold py-2 px-4 rounded">
+                                Salir
                             </button>
                         </div>
                     </form>                    

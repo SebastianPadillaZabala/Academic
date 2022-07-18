@@ -23,6 +23,12 @@ class SuscripcionController extends Controller
         //
     }
 
+    public function all(Request $request){
+        $grafica2 = DB::select('select nombre_plan as nombreplan, count(id_plan) as cantidad from suscripciones
+        group by nombre_plan');
+        return response(json_encode($grafica2), 200)->header('Content-type', 'text/plain');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -32,6 +32,26 @@ Route::get('/log', function () {
 Route::post('/loggin',[LoginController::class, 'login'])
 ->name('loggin');
 
+///Examenes
+
+Route::get('/examenes/{id}',[examenesController::class, 'index'])
+->name('examenes');
+Route::post('/examenesReg/{id}',[examenesController::class, 'create'])
+->name('examenes.registrar');
+
+Route::get('/preguntas/{id}',[preguntasController::class, 'index'])
+->name('preguntas');
+Route::post('/preguntasReg/{id}',[preguntasController::class, 'create'])
+->name('preguntas.registrar');
+
+Route::get('/evaluacion/{id}', [examenesController::class, 'redirect'])
+->name('evaluacion');
+Route::post('/revision/{id}', [examenesController::class, 'revisar'])
+->name('revisar');
+
+Route::get('/aprobado', [examenesController::class, 'salir'])
+->name('aprobado.salir');
+
 ////TODO ADMIN
 Route::get('/admin', function () {
     return view('backoffice.pages.admin.dashboard');
@@ -154,6 +174,15 @@ Route::post('/checkout/{id}',[SuscripcionController::class, 'store'])
 Route::get('/redirect',[LoginController::class, 'index'])
 ->name('re');
 
+///AJAX
+Route::post('/categoria/ajax',[CategoriaController::class, 'all'])
+->name('ajax');
+Route::post('/suscripciones/ajax',[SuscripcionController::class, 'all'])
+->name('ajax2');
+Route::post('/cursos/ajax',[CursosController::class, 'all'])
+->name('ajax3');
+
+
 ///Bitacora
 Route::group(['middleware' => ['auth'],'as' => 'bitacora.'],function () {
     Route::get('/private00', function () {
@@ -212,3 +241,4 @@ Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('search',[App\Http\Controllers\SearchController::class,'index'])->name('search');
+
