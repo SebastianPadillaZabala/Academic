@@ -20,7 +20,7 @@ class ClasesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:' . config('app.estudiante_role'));
+        $this->middleware('role:' . config('app.estudiante_role') . '-' . config('app.profesor_role'));
     }
     public function index($id)
     {
@@ -117,10 +117,10 @@ class ClasesController extends Controller
              ->join('cursos', 'clases.id_curso', '=', 'cursos.id_curso')
              ->select('clases.*', 'cursos.nombreCurso')
              ->where('clases.id_curso', '=', $id_curso)->get();
-             
-             $examen_curso = DB::table('examenes')             
-             ->where('examenes.curso_id', '=', $id_curso)->get();             
-            
+
+             $examen_curso = DB::table('examenes')
+             ->where('examenes.curso_id', '=', $id_curso)->get();
+
              return view('prueba2', ['clase_curso'=>$clase_curso], ['examen_curso' => $examen_curso]);
            }
     }
