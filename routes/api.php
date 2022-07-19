@@ -53,3 +53,6 @@ Route::middleware('auth:api')
 //insertar progreso
 Route::middleware('auth:api')
 ->put('progreso/{id_curso}/{index}',[App\Http\Controllers\API\Miscursos_Controller::class,'progresoCurso']);
+
+//obtener todos los Categorias
+Route::get('categorias',[App\Http\Controllers\API\Cursos_Controller::class,'categorias']);

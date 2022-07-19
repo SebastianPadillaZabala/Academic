@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\Categoria;
 use App\Models\Curso;
 
 class Cursos_Controller extends Controller
@@ -32,5 +33,21 @@ class Cursos_Controller extends Controller
     }
     public function get_by_Categorias()
     { }
+
+    public function categorias()
+    {  $list = new Categoria();
+        $list = DB::table('categorias')->get();
+        $categorias=[];
+        foreach($list as $item){
+
+         
+         $cat = new \stdClass();
+         $cat->id_cat=$item->id_cat;
+         $cat->nombreCurso = $item->nombreCategoria;
+         $cat->descripcion = $item->descripcion;
+         array_push($categorias, $cat);
+        }
+         return response()->json($categorias);
+    }
 
 }
