@@ -124,4 +124,42 @@ class RegisterController extends BaseController
         return response($response, 200);
     }
 
+    public function getAlumno($id_user){
+        $id = $id_user;
+
+        $alumno = DB::select('SELECT alumnos., users., suscripciones.fecha_inicio, suscripciones.fecha_final, (true) as x
+        FROM alumnos, users, suscripciones
+        where alumnos.id_user=users.id and users.id = '.$id. 'and suscripciones.id_user ='.$id);
+        if($alumno == null){
+            $alumno = DB::select('SELECT alumnos., users., (false) as x
+            FROM alumnos, users where alumnos.id_user=users.id and users.id = '. $id);
+        }
+
+        $this_alumno = $alumno[0];
+        if($this_alumno->x){
+            $response= [
+                'id_alum'=> $this_alumno->id_alum,
+                'cantidad_cursos'=> $this_alumno->cantidad_cursos,
+               // 'suscripcion'=> $this_alumno->suscripcion,
+                'id_user'=> $this_alumno->id_user,
+                'x'=> $this_alumno->x,
+                'fecha_inicio'=> $this_alumno->fecha_inicio,
+                'fecha_final'=> $this_alumno->fecha_final,
+            ];
+            return response($response, 200);
+        }else{
+            $response= [
+                'id_alum'=> $this_alumno->id_alum,
+                'cantidad_cursos'=> $this_alumno->cantidad_cursos,
+               // 'suscripcion'=> $this_alumno->suscripcion,
+                'id_user'=> $this_alumno->id_user,
+                'x'=> $this_alumno->x,
+                'fecha_inicio'=> '',
+                'fecha_final'=> '',
+            ];
+            return response($response, 200);
+        }
+
+    }
+
 }

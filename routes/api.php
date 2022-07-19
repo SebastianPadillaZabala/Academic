@@ -56,3 +56,29 @@ Route::middleware('auth:api')
 
 //obtener todos los Categorias
 Route::get('categorias',[App\Http\Controllers\API\Cursos_Controller::class,'categorias']);
+
+//EXAMEN
+Route::middleware('auth:api')//obtener datos del examen de cierto curso
+->get('getExamen/{id_curso}', [App\Http\Controllers\API\ExamenController::class, 'getExamen']);
+
+Route::get('getExamen2/{id_curso}', [App\Http\Controllers\API\ExamenController::class, 'getExamen']);
+
+Route::middleware('auth:api')//obtener las preguntas de cierto examen
+->get('getPreguntas/{id_examen}', [App\Http\Controllers\API\ExamenController::class, 'getPreguntas']);
+
+Route::get('getPreguntas2/{id_examen}', [App\Http\Controllers\API\ExamenController::class, 'getPreguntas']);
+
+Route::middleware('auth:api')//obtener las preguntas de cierto examen
+->get('getIncisos/{id_pregunta}', [App\Http\Controllers\API\ExamenController::class, 'getIncisos']);
+
+Route::get('getIncisos2/{id_pregunta}', [App\Http\Controllers\API\ExamenController::class, 'getIncisos']);
+
+Route::middleware('auth:api')//obtener datos de alumno y suscripcion
+->get('getAlumno/{id_user}', [App\Http\Controllers\API\RegisterController::class, 'getAlumno']);
+
+Route::get('getAlumno2/{id_user}', [App\Http\Controllers\API\RegisterController::class, 'getAlumno']);
+
+Route::middleware('auth:api')//obtener datos de alumno y suscripcion
+->get('getUnCurso/{id_user}', [App\Http\Controllers\API\ExamenController::class, 'getUnCurso']);
+
+Route::get('getUnCurso2/{id_user}', [App\Http\Controllers\API\ExamenController::class, 'getUnCurso']);
